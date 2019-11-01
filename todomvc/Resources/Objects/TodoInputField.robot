@@ -11,6 +11,7 @@ Wait for todo input field
 Add todo
     [Arguments]  ${title}
     Input Text  ${todo-input}  ${title}
+    Capture Page Screenshot
     Press Keys  ${todo-input}  RETURN
 
 Add todos

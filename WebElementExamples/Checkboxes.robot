@@ -27,7 +27,7 @@ Checking checkbox state
 
 *** Keywords ***
 Load page
-    Open Browser  http://webdriveruniversity.com/Dropdown-Checkboxes-RadioButtons/index.html  firefox
+    Open Browser  http://webdriveruniversity.com/Dropdown-Checkboxes-RadioButtons/index.html  chrome
     Wait Until Element Is Visible  css:#main-header
 
 Close page

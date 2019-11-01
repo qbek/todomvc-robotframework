@@ -6,7 +6,7 @@ Test Setup  Open TodoMVC
 Test Teardown  Close TodoMVC
 
 *** Test Cases ***
-User car add a todo
+User can add a todo
     [Documentation]  Verify if user can add a single todo
     [Tags]  smoke
 
@@ -19,3 +19,4 @@ User can add multiple todos
     User creates couple of todos
     User sees all his todos are added to the list
     User sees correct count of remaining todos
+
