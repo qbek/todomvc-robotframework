@@ -1,0 +1,6 @@
+venv
+*.log
+*.html
+*.png
+*.xml
+.idea
