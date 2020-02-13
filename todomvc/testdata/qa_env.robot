@@ -1,4 +1,4 @@
 *** Variables ***
 ${APP_URL} =    http://todomvc.com/examples/jquery/#/all
 
-${test_todo_name} =    This is todo for QA env
+@{multiple_tasks} =    task 1    task 2     task 3    taks 4      task 5

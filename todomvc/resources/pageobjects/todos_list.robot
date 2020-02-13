@@ -11,15 +11,25 @@ ${COMPLETE_TODO} =   ${TODO} .toggle
 *** Keywords ***
 Complete a todo
     Click element    ${COMPLETE_TODO}
+    Capture page screenshot
 
 Todo is on the list
     [Arguments]    ${todo_name}
     Element should contain     ${TODOS_LIST}    ${todo_name}
+    Capture page screenshot
 
 Todo is not on the list
     [Arguments]    ${todo_name}
     Element should not contain     ${TODOS_LIST}    ${todo_name}
+    Capture page screenshot
 
 Todo is displayed as completed
     ${classes} =   Get Element Attribute    ${TODO}    class
     Should Contain   ${classes}    completed
+    Capture page screenshot
+
+
+Count created todos
+    @{todos} =    Get WebElements    ${TODO}
+    ${todos_count} =    Get length   ${todos}
+    Return From Keyword    ${todos_count}

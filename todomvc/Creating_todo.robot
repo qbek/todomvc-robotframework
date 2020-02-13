@@ -8,3 +8,8 @@ User can create a todo
     Given user opens todoMVC app
     When user creates a new todo
     Then user can see his todo on the list
+
+User can create multiple todos
+    Given user opens todoMVC app
+    When user creates few todos
+    Then todo counter show correct number
