@@ -36,7 +36,9 @@ completed todo is on Completed list
     Todo is on the list   ${test_todo_name}
 
 user creates few todos
-    FOR   ${todo_name}    IN    @{multiple_tasks}
+    ${todos_to_create} =    Random Int    min=3    max=10
+    @{todos} =     Sentences    ${todos_to_create}
+    FOR   ${todo_name}    IN    @{todos}
         Add todo    ${todo_name}
     END
 
