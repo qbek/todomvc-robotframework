@@ -13,10 +13,12 @@ Complete a todo
     Click element    ${COMPLETE_TODO}
 
 Todo is on the list
-    Element should contain     ${TODOS_LIST}    Learn RobotFramework
+    [Arguments]    ${todo_name}
+    Element should contain     ${TODOS_LIST}    ${todo_name}
 
 Todo is not on the list
-    Element should not contain     ${TODOS_LIST}    Learn RobotFramework
+    [Arguments]    ${todo_name}
+    Element should not contain     ${TODOS_LIST}    ${todo_name}
 
 Todo is displayed as completed
     ${classes} =   Get Element Attribute    ${TODO}    class

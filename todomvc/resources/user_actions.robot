@@ -1,25 +1,20 @@
 *** Settings ***
-Library    SeleniumLibrary
 Resource   pageobjects/create_todo_input.robot
 Resource   pageobjects/todo_tabs.robot
 Resource   pageobjects/todos_list.robot
-
-
-*** Variables ***
-${BROWSER} =    firefox
-
+Resource   env_setup.robot
+Resource   ../testdata/${env}_env.robot
 
 *** Keywords ***
 user opens todoMVC app
-    Open browser    http://todomvc.com/examples/angularjs/#/    ${BROWSER}
-    Maximize browser window
-    Is create todo input displayed
+    start the app
+
 
 user creates a new todo
-    Add todo
+    Add todo    ${test_todo_name}
 
 user can see his todo on the list
-    Todo is on the list
+    Todo is on the list    ${test_todo_name}
 
 user completes a todo
     Complete a todo
@@ -29,8 +24,8 @@ user sees todo marked as completed
 
 completed todo is not on the Active list
     Switch to active todos tab
-    Todo is not on the list
+    Todo is not on the list    ${test_todo_name}
 
 completed todo is on Completed list
     Switch to completed todos tab
-    Todo is on the list
+    Todo is on the list   ${test_todo_name}
