@@ -14,4 +14,5 @@ User deletes the One
     And user creates few todos
     And user creates The One
     And user creates few todos
-    And user deleted The One
+    When user deleted The One
+    Then The One is not on the list

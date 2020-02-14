@@ -53,8 +53,14 @@ deleted todo is not on the list
     Todo is not on the list    ${test_todo_name}
 
 user creates The One
-    Add todo    The One. DELETE ME!
+    Set test variable    ${theOne}    The One. DELETE ME!
+    Add todo    ${theOne}
 
 
 user deleted The One
-    
+    ${index} =    Get todo index    ${theOne}
+    Delete a todo by index    ${index}
+
+
+The One is not on the list
+    Todo is not on the list     ${theOne}
