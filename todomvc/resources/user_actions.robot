@@ -36,7 +36,7 @@ completed todo is on Completed list
     Todo is on the list   ${test_todo_name}
 
 user creates few todos
-    ${todos_to_create} =    Random Int    min=3    max=10
+    ${todos_to_create} =    Random Int    min=1    max=4
     @{todos} =     Sentences    ${todos_to_create}
     FOR   ${todo_name}    IN    @{todos}
         Add todo    ${todo_name}
@@ -45,3 +45,16 @@ user creates few todos
 todo counter show correct number
     ${todo_count} =   Count created todos
     Counter show value    ${todo_count}
+
+user deletes a todo
+    Delete a todo
+
+deleted todo is not on the list
+    Todo is not on the list    ${test_todo_name}
+
+user creates The One
+    Add todo    The One. DELETE ME!
+
+
+user deleted The One
+    

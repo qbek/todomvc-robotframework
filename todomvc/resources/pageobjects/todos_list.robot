@@ -6,12 +6,17 @@ Library    SeleniumLibrary
 ${TODOS_LIST} =    css:.todo-list
 ${TODO} =    ${TODOS_LIST} li
 ${COMPLETE_TODO} =   ${TODO} .toggle
+${DELETE_BUTTON} =    ${TODO} .destroy
 
 
 *** Keywords ***
 Complete a todo
     Click element    ${COMPLETE_TODO}
     Capture page screenshot
+
+Delete a todo
+    Mouse over   ${TODO}
+    Click element    ${DELETE_BUTTON}
 
 Todo is on the list
     [Arguments]    ${todo_name}
