@@ -19,7 +19,7 @@ user creates a new todo
     Add todo    ${test_todo_name}
 
 user can see his todo on the list
-    Todo is on the list    ${test_todo_name}
+    Todo is on the list    bla bla
 
 user completes a todo
     Complete a todo

@@ -10,6 +10,7 @@ ${BROWSER} =    firefox
 
 *** Keywords ***
 Start the app
+    Set tags   ${BROWSER}
     Open browser    ${APP_URL}    ${BROWSER}
     Maximize browser window
     Is create todo input displayed

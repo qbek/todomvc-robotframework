@@ -4,6 +4,7 @@ Test Teardown    Close browser
 
 *** Test Cases ***
 User can delete a todo
+    Log Variables
     Given user opens todoMVC app
     And user creates a new todo
     When user deletes a todo
