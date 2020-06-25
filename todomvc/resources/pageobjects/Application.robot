@@ -1,11 +1,8 @@
 *** Settings ***
 Library    SeleniumLibrary
-
-
-*** Variables ***
-${TODOMVC_URL} =    http://todomvc.com/examples/jquery/
-${BROWSER} =    firefox
+Resource   New_todo_input.robot
 
 *** Keywords ***
 Open todoMVC application
     Open browser    ${TODOMVC_URL}    ${BROWSER}
+    New todo input is displayed

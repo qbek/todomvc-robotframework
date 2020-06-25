@@ -1,6 +1,7 @@
 *** Settings ***
 Test Teardown     Close browser
 Resource     resources/User_actions.robot
+Resource    testdata/${ENV}_env.robot
 
 *** Test Cases ***
 User can add a todo

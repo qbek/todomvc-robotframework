@@ -4,10 +4,6 @@ Resource   pageobjects/Todo_filters.robot
 Resource   pageobjects/Todos_list.robot
 Resource   pageobjects/Application.robot
 
-*** Variables ***
-${TODO_NAME} =     Practice RobotFramework
-
-
 *** Keywords ***
 User opens todoMVC application
     Open todoMVC application
