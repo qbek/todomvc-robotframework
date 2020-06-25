@@ -1,8 +1,10 @@
 *** Settings ***
+Library    FakerLibrary
 Resource   pageobjects/New_todo_input.robot
 Resource   pageobjects/Todo_filters.robot
 Resource   pageobjects/Todos_list.robot
 Resource   pageobjects/Application.robot
+Resource   pageobjects/Todos_counter.robot
 
 *** Keywords ***
 User opens todoMVC application
@@ -10,6 +12,15 @@ User opens todoMVC application
 
 User adds a new todo
     Add a todo    ${TODO_NAME}
+
+User adds a few todos
+    ${number} =    Random Int    min=3    max=10
+    @{todos} =    Sentences    nb=${number}
+    FOR    ${todo}    IN    @{todos}
+        Add a todo    ${todo}
+    END
+
+
 
 Todo is on the todos list
     Todo is on the list    ${TODO_NAME}
@@ -27,3 +38,7 @@ The todo is not on the Active list
 The todo is on the Completed list
     Switch to completed todos filter
     Todo is on the list    ${TODO_NAME}
+
+Todos counter shows correct number of created todos
+    ${todos_count} =    Calculate todos count
+    Check if counter shows value    ${todos_count}

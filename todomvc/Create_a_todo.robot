@@ -12,3 +12,7 @@ User can add a todo
 
 
 
+User can add a multiple todos
+    User opens todoMVC application
+    User adds a few todos
+    Todos counter shows correct number of created todos

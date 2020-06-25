@@ -24,3 +24,7 @@ Todo is displayed as completed
     Capture page screenshot
     ${classes} =   Get Element Attribute    ${TODO}    class
     Should Contain   ${classes}    completedd
+
+Calculate todos count
+    ${count} =   Get Element Count     ${TODO}
+    Return from keyword    ${count}
