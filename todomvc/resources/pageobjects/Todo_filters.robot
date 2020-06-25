@@ -10,6 +10,8 @@ ${COMPLETED_TODOS_FILTER} =   ${FILTERS} [href="#/completed"]
 *** Keywords ***
 Switch to active todos filter
     Click element    ${ACTIVE_TODOS_FILTER}
+    Capture page screenshot
 
 Switch to completed todos filter
     Click element    ${COMPLETED_TODOS_FILTER}
+    Capture page screenshot

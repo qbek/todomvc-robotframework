@@ -6,3 +6,4 @@ Resource   New_todo_input.robot
 Open todoMVC application
     Open browser    ${TODOMVC_URL}    ${BROWSER}
     New todo input is displayed
+    Capture page screenshot
