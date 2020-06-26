@@ -42,3 +42,9 @@ The todo is on the Completed list
 Todos counter shows correct number of created todos
     ${todos_count} =    Calculate todos count
     Check if counter shows value    ${todos_count}
+
+User deletes added todo
+    Delete a todo
+
+Deleted todo is not on the list
+    Todo is not on the list    ${TODO_NAME}
