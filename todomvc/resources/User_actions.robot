@@ -14,13 +14,11 @@ User adds a new todo
     Add a todo    ${TODO_NAME}
 
 User adds a few todos
-    ${number} =    Random Int    min=3    max=10
+    ${number} =    Random Int    min=2    max=6
     @{todos} =    Sentences    nb=${number}
     FOR    ${todo}    IN    @{todos}
         Add a todo    ${todo}
     END
-
-
 
 Todo is on the todos list
     Todo is on the list    ${TODO_NAME}
@@ -46,5 +44,12 @@ Todos counter shows correct number of created todos
 User deletes added todo
     Delete a todo
 
+User deletes The One!
+    Delete todo with name    ${THE_ONE}
+
 Deleted todo is not on the list
     Todo is not on the list    ${TODO_NAME}
+
+
+User adds The One!
+    Add a todo    ${THE_ONE}
