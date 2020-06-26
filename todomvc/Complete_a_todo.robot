@@ -6,6 +6,7 @@ Test Teardown     Close browser
 
 *** Test Cases ***
 User can mark a todo as completed
+    [Tags]    Smoke
     User opens todoMVC application
     User adds a new todo
     User completes the todo
@@ -22,4 +23,3 @@ Completed todo is on Completed todos list
     User adds a new todo
     User completes the todo
     The todo is on the Completed list
-
