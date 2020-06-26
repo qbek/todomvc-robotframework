@@ -18,3 +18,4 @@ User can delete The One!
     User adds The One!
     User adds a few todos
     User deletes The One!
+    The One! is not on the list

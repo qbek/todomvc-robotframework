@@ -50,6 +50,8 @@ User deletes The One!
 Deleted todo is not on the list
     Todo is not on the list    ${TODO_NAME}
 
-
 User adds The One!
     Add a todo    ${THE_ONE}
+
+The One! is not on the list
+    Todo is not on the list    ${THE_ONE}
