@@ -2,10 +2,11 @@
 Test Teardown     Close browser
 Resource     resources/User_actions.robot
 Resource    testdata/${ENV}_env.robot
+Resource    testdata/testdata.robot
 Library    Dialogs
 
 *** Test Cases ***
-User can add a todo
+User can delete a todo
     User opens todoMVC application
     User adds a new todo
     User deletes added todo
@@ -17,4 +18,3 @@ User can delete The One!
     User adds The One!
     User adds a few todos
     User deletes The One!
-    Pause Execution

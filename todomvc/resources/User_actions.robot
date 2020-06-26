@@ -42,7 +42,7 @@ Todos counter shows correct number of created todos
     Check if counter shows value    ${todos_count}
 
 User deletes added todo
-    Delete a todo
+    Delete todo with name     ${TODO_NAME}
 
 User deletes The One!
     Delete todo with name    ${THE_ONE}

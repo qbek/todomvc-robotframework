@@ -8,18 +8,14 @@ ${TODO} =    ${TODOS_LIST} li
 ${COMPLETE_TODO} =   ${TODO} .toggle
 ${DELETE_TODO} =    ${TODO} .destroy
 
-${TODO_BY_INDEX} =    css:.todo-list li:nth-child(INDEX)
-${DELET_TODO_BY_INDEX} =    css:.todo-list li:nth-child(INDEX) .destroy
+${TODO_BY_INDEX} =    ${TODO}:nth-child(INDEX)
+${DELET_TODO_BY_INDEX} =    ${TODO_BY_INDEX} .destroy
 
 
 *** Keywords ***
 Complete a todo
     Click element    ${COMPLETE_TODO}
     Capture page screenshot
-
-Delete a todo
-    Mouse Over    ${TODO}
-    Click Element    ${DELETE_TODO}
 
 Delete todo with name
     [Arguments]    ${todo_to_delete}
@@ -60,12 +56,16 @@ Calculate todos count
 
 Prepare delete selector by index
     [Arguments]   ${index}
-    ${str} =    Convert To String    ${index}
-    ${result} =   Replace String    ${DELET_TODO_BY_INDEX}    INDEX    ${str}
+    ${result} =   Prepare selector by index    ${DELET_TODO_BY_INDEX}    ${index}
     Return From Keyword    ${result}
 
 Prepare todo selector by index
     [Arguments]   ${index}
+    ${result} =   Prepare selector by index    ${TODO_BY_INDEX}    ${index}
+    Return From Keyword    ${result}
+
+Prepare selector by index
+    [Arguments]     ${selector}     ${index}
     ${str} =    Convert To String    ${index}
-    ${result} =   Replace String    ${TODO_BY_INDEX}    INDEX    ${str}
+    ${result} =   Replace String    ${selector}    INDEX    ${str}
     Return From Keyword    ${result}

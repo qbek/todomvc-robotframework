@@ -1,6 +1,7 @@
 *** Settings ***
 Resource    resources/User_actions.robot
 Resource    testdata/${ENV}_env.robot
+Resource    testdata/testdata.robot
 Test Teardown     Close browser
 
 
