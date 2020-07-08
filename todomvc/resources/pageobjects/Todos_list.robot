@@ -48,7 +48,7 @@ Todo is not on the list
 Todo is displayed as completed
     Capture page screenshot
     ${classes} =   Get Element Attribute    ${TODO}    class
-    Should Contain   ${classes}    completedd
+    Should Contain   ${classes}    completed
 
 Calculate todos count
     ${count} =   Get Element Count     ${TODO}

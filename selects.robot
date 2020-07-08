@@ -25,6 +25,7 @@ User can loose game
     Close browser
 
 User can win game
+    Set Selenium Speed    1s
     Select from list by label    ${QUESTION_1}     ${QUESTION_1_ANSWER}
     Click element    ${SUBMIT_ANSWER_1}
 

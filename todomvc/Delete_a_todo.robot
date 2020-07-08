@@ -7,6 +7,7 @@ Library    Dialogs
 
 *** Test Cases ***
 User can delete a todo
+    [Tags]   Regression  
     User opens todoMVC application
     User adds a new todo
     User deletes added todo
