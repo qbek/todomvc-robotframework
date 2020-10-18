@@ -33,11 +33,11 @@ User checks element index
     Log    ${id}    console=True
     Delete Todo By Index     ${id}
 
+# this is quite smart solution
+# instead of remembering in test variable amount of randomly added todos
+# I'm just counting the number of <li> elements, which represents todo items
 User sees correct count of remaining todos
-    ${counter} =   Get todos counter
-    # this is quite smart solution
-    # instead of remembering in test variable amount of randomly added todos
-    # I'm just counting the number of <li> elements, which represents todo items
+    ${counter} =   Get todos counter    
     ${todos_count} =   Get count of todos
     Should Be Equal As Strings    ${counter}   ${todos_count}
 

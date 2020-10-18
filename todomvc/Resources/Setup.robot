@@ -18,7 +18,8 @@ Add execution tags
     Set Tags    ${BROWSER}    ${BUILD_ID}
 
 Start browser session
-    ${CAPABILITIES} =   Run Keyword If   '${URL_GRID}' != 'False'   Set Variable    name:${TEST NAME},build:${BUILD_ID}
+    ${CAPABILITIES} =   Set Variable    none
+    ${CAPABILITIES} =   Run Keyword If   '${USE_SELENIUM_GRID}' != 'False'   Set Variable    name:${TEST NAME},build:${BUILD_ID}
     Open browser  ${TODOMVC_URL}    ${BROWSER}   remote_url=${URL_GRID}   desired_capabilities=${CAPABILITIES}
 
 Close TodoMVC
