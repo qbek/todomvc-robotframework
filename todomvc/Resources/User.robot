@@ -4,23 +4,20 @@ Resource  Objects/TodosList.robot
 Resource  Objects/TodoCounter.robot
 Resource  Objects/Todo.robot
 Resource  Objects/Panes.robot
+Resource  ../TestData/${TEST_DATA}TestData.robot
 
 Library    FakerLibrary
 
-*** Variables ***
-${todo-title} =  Learn RobotFramework
-
 *** Keywords ***
 User creates new todo
+    Setup a todo-title test variable
     Add todo    ${todo-title}
 
 User can see his todo is added to the list
     Todo list contains todo    ${todo-title}
 
 User creates couple of todos
-    ${tc} =   Random Int     min=3   max=10
-    @{sentences} =   Sentences    nb=${tc}
-    Set Test Variable   @{todo-titles}    @{sentences}
+    Setup a todo-titles test variable
     Add todos   @{todo-titles}
 
 
@@ -37,7 +34,7 @@ User checks element index
 # instead of remembering in test variable amount of randomly added todos
 # I'm just counting the number of <li> elements, which represents todo items
 User sees correct count of remaining todos
-    ${counter} =   Get todos counter    
+    ${counter} =   Get todos counter
     ${todos_count} =   Get count of todos
     Should Be Equal As Strings    ${counter}   ${todos_count}
 
@@ -62,9 +59,7 @@ Todo is on list
 
 
 User adds random number of todos
-    ${count} =   Random Int     min=3   max=6
-    @{sentences} =   Sentences    nb=${count}
-    Add todos   @{sentences}
+    User creates couple of todos
 
 
 User adds "DELETE ME!!!" todo
