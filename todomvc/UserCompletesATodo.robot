@@ -3,7 +3,6 @@ Resource   resources/UserActions.robot
 Test Teardown    Close browser
 
 
-
 *** Test Cases ***
 User can complete a todo
     User opens TodoMVC application

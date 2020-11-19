@@ -21,3 +21,7 @@ Todo is NOT on the list
 
 Complete a todo
     Select checkbox     ${TODO_COMPLETE}
+
+Todo is marked as completed
+    ${classes} =   Get Element Attribute    ${TODO_ITEM}    class
+    Should contain    ${classes}     completed
