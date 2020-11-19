@@ -1,16 +1,11 @@
 *** Settings ***
 Library    SeleniumLibrary
 Resource   ../testdata/testdata_${ENV}_env.robot
+Resource   pageobjects/TodoInput.robot
+Resource   pageobjects/TodoFilters.robot
+Resource   pageobjects/TodosList.robot
 
-*** Variables ***
-${TODO_INPUT} =     css:.new-todo
-${TODOS_LIST} =     css:.todo-list
 
-${TODO_ITEM} =    css:.todo-list li
-${TODO_COMPLETE} =    css:.todo-list li .toggle
-
-${ACTIVE_FILTER_TAB} =    css:[href="#/active"]
-${COMPLETED_FILTER_TAB} =    css:[href="#/completed"]
 
 
 *** Keywords ***
@@ -19,8 +14,8 @@ User opens TodoMVC application
     Wait until page contains element     ${TODO_INPUT}
 
 User creates a new todo
-    Input text     ${TODO_INPUT}     ${TODO_NAME}
-    Press keys     ${TODO_INPUT}     RETURN
+    Create a todo    ${TODO_NAME}
+
 
 User checks if created todo is on the list
     Element text should be     ${TODOS_LIST}      ${TODO_NAME}
