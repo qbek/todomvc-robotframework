@@ -1,10 +1,8 @@
 *** Settings ***
 Library    SeleniumLibrary
+Resource   ../testdata/testdata_${ENV}_env.robot
 
 *** Variables ***
-${BROWSER} =   firefox
-${TODOMVC_URL} =     http://todomvc.com/examples/angularjs/#/
-
 ${TODO_INPUT} =     css:.new-todo
 ${TODOS_LIST} =     css:.todo-list
 
@@ -14,7 +12,6 @@ ${TODO_COMPLETE} =    css:.todo-list li .toggle
 ${ACTIVE_FILTER_TAB} =    css:[href="#/active"]
 ${COMPLETED_FILTER_TAB} =    css:[href="#/completed"]
 
-${TODO_NAME} =     Learn RobotFramework
 
 *** Keywords ***
 User opens TodoMVC application
