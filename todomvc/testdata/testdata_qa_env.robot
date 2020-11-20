@@ -12,6 +12,6 @@ Set a TODO_NAME test variable
     Set test variable     ${TODO_NAME}    ${todo}
 
 Set a FEW_TODO_NAMES test variable
-    ${nb} =     Random Int    min=3    max=7
+    ${nb} =     Random Int    min=1    max=4
     @{todos} =     Sentences     nb=${nb}
     Set test variable     @{FEW_TODO_NAMES}    @{todos}

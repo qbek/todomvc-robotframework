@@ -21,6 +21,9 @@ User creates a few todo
         Create a todo    ${todo}
     END
 
+User creates THE ONE!
+    create a todo    THE ONE!
+
 User checks if created todo is on the list
     Todo is on the list    ${TODO_NAME}
 
@@ -42,3 +45,15 @@ User checks if todo is on Completed tab
 User checks if todo counter shows correct value
     ${count_of_todos} =     Get count of existing todos
     Check if counter is     ${count_of_todos}
+
+User deletes a todo
+    Delete a todo
+
+User checks if todo is NOT on All tab
+    Todo is NOT on the list    ${TODO_NAME}
+
+User deletes THE ONE!
+    Delete a todo    THE ONE!
+
+User checks if THE ONE! is not on the list
+    Todo is NOT on the list     THE ONE!
