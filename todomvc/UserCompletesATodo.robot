@@ -5,10 +5,11 @@ Test Teardown    Close browser
 
 *** Test Cases ***
 User can complete a todo
-    User opens TodoMVC application
-    User creates a new todo
-    User completes a todo
-    User checks if todo is completed
+    [Tags]    smoke
+    Given User opens TodoMVC application
+    And User creates a new todo
+    When User completes a todo
+    Then User checks if todo is completed
 
 User can filter active todos
     User opens TodoMVC application

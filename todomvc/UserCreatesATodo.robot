@@ -6,8 +6,9 @@ Test Teardown     Close browser
 
 *** Test Cases ***
 User can create a todo
+    [Tags]    smoke
     User opens TodoMVC application
-    User creates a new todo
+#    User creates a new todo
     User checks if created todo is on the list
 
 User can check count of todos

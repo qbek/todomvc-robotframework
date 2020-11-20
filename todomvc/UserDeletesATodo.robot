@@ -5,6 +5,7 @@ Test Teardown     Close browser
 
 *** Test Cases ***
 User can delete a todo
+    [Tags]    smoke
     User opens TodoMVC application
     User creates a new todo
     User deletes a todo
