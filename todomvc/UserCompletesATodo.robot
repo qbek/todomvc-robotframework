@@ -22,3 +22,10 @@ User can filter completed todos
     User completes a todo
     User checks if todo is on Completed tab
 
+User can complete a random todo
+    User opens TodoMVC application
+    User creates a few todo
+    User creates THE ONE!
+    User creates a few todo
+    User completes THE ONE!
+    User checks if THE ONE! is completed

@@ -28,10 +28,16 @@ User checks if created todo is on the list
     Todo is on the list    ${TODO_NAME}
 
 User completes a todo
-    Complete a todo
+    Complete a todo    ${TODO_NAME}
+
+User completes THE ONE!
+    Complete a todo    THE ONE!
 
 User checks if todo is completed
-    Todo is marked as completed
+    Todo is marked as completed    ${TODO_NAME}
+
+User checks if THE ONE! is completed
+    Todo is marked as completed     THE ONE!
 
 
 User checks if todo is NOT on Active tab
@@ -46,8 +52,13 @@ User checks if todo counter shows correct value
     ${count_of_todos} =     Get count of existing todos
     Check if counter is     ${count_of_todos}
 
+User checks if todo counter shows value
+    [Arguments]     ${counter}
+    Check if counter is      ${counter}
+
+
 User deletes a todo
-    Delete a todo
+    Delete a todo    ${TODO_NAME}
 
 User checks if todo is NOT on All tab
     Todo is NOT on the list    ${TODO_NAME}

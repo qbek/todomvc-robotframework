@@ -6,12 +6,10 @@ Library    String
 *** Variables ***
 ${TODOS_LIST} =     css:.todo-list
 
-${TODO_ITEM} =    css:.todo-list li
-${TODO_COMPLETE} =    css:.todo-list li .toggle
-${TODO_DELETE} =    css:.todo-list li .destroy
+${TODO_ITEM} =    ${TODOS_LIST} li
 
-
-${TODO_BY_NAME} =    css:.todo-list li:nth-child(<INDEX>)
+${TODO_BY_NAME} =    ${TODO_ITEM}:nth-child(<INDEX>)
+${TODO_BY_NAME_COMPLETE} =     ${TODO_BY_NAME} .toggle
 ${TODO_BY_NAME_DELETE} =     ${TODO_BY_NAME} .destroy
 
 
@@ -27,11 +25,19 @@ Todo is NOT on the list
     Capture page screenshot
 
 Complete a todo
-    Select checkbox     ${TODO_COMPLETE}
+    [Arguments]     ${name}
+    ${index} =     get todo index by name     ${name}
+    ${completeByName} =    Replace string    ${TODO_BY_NAME_COMPLETE}    <INDEX>     ${index}
+
+    Select checkbox     ${completeByName}
     Capture page screenshot
 
 Todo is marked as completed
-    ${classes} =   Get Element Attribute    ${TODO_ITEM}    class
+    [Arguments]   ${name}
+    ${index} =     get todo index by name     ${name}
+    ${todoByName} =    Replace string    ${TODO_BY_NAME}    <INDEX>     ${index}
+
+    ${classes} =   Get Element Attribute    ${todoByName}    class
     Should contain    ${classes}     completed
     Capture page screenshot
 
@@ -40,20 +46,24 @@ Get count of existing todos
     Return from keyword    ${counter}
 
 Delete a todo
-    [Arguments]     ${expected_name}
-    @{todos} =    get webelements     ${TODO_ITEM}
-    ${index} =    set Variable     ${1}
-    Log     ${TODO_BY_NAME}    console=true
-    FOR  ${todo}    IN    @{todos}
-        ${todo_name} =    Get text      ${todo}
-        Exit for loop if    '${todo_name}' == '${expected_name}'
-        ${index} =     Evaluate     ${index} + ${1}
-    END
-    Log     ${index}    console=true
-    Log     ${TODO_BY_NAME}    console=true
-    ${index_str} =    Convert to string     ${index}
-    ${todoByName} =    Replace string    ${TODO_BY_NAME}    <INDEX>     ${index_str}
+    [Arguments]     ${name}
+    ${index} =     get todo index by name     ${name}
+    ${todoByName} =    Replace string    ${TODO_BY_NAME}    <INDEX>     ${index}
     Mouse over     ${todoByName}
 
-    ${destroyByName} =     Replace string    ${TODO_BY_NAME_DELETE}    <INDEX>     ${index_str}
+    ${destroyByName} =     Replace string    ${TODO_BY_NAME_DELETE}    <INDEX>     ${index}
     Click element     ${destroyByName}
+
+
+Get todo index by name
+    [Arguments]    ${expected_name}
+    @{todos} =    get webelements     ${TODO_ITEM}
+    ${index} =    set Variable     ${1}
+
+    FOR  ${todo}    IN    @{todos}
+        ${todo_name} =    Get text      ${todo}
+        ${index_str} =    Convert to string     ${index}
+        Return From Keyword If    '${todo_name}' == '${expected_name}'   ${index_str}
+        ${index} =     Evaluate     ${index} + ${1}
+    END
+
