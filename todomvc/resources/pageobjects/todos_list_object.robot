@@ -1,5 +1,5 @@
 *** Settings ***
-Library    SeleniumLibrary
+Library    SeleniumWrapper.py
 Library    String
 
 *** Variables ***
@@ -8,9 +8,7 @@ ${TODO_TOGGLE_COMPLETE} =   css:.todo-list .toggle
 ${TODO_DELETE} =   css:.todo-list .destroy
 ${TODO_ITEM} =     css:.todo-list li
 ${TODO_COMPLETITON_MARK} =    completed
-
-${TODO_ITEM_BY_INDEX} =    css:.todo-list li:nth-child(<INDEX>)
-${TODO_DELETE_BY_INDEX} =   css:.todo-list li:nth-child(<INDEX>) .destroy
+${TODO_DESTROY_BUTTON} =    css:.destroy
 
 *** Keywords ***
 Todo is on the list
@@ -36,22 +34,16 @@ Todo is marked as completed
 Delete todo with name
     [Arguments]   ${name}
 
-    ${index} =     Find a todo index with name     ${name}
-    ${index_str} =   Convert To String    ${index}
-    ${todo_by_index} =    Replace string   ${TODO_ITEM_BY_INDEX}      <INDEX>     ${index_str}
-    ${delete_by_index} =    Replace string   ${TODO_DELETE_BY_INDEX}      <INDEX>     ${index_str}
+    ${todo} =     Find a todo with name     ${name}
+    ${todo_destroy} =   findInsideElement   ${TODO_DESTROY_BUTTON}    ${todo}
+    Mouse over     ${todo}
+    Click element    ${todo_destroy}
 
-    Mouse over     ${todo_by_index}
-    Click element    ${delete_by_index}
-
-Find a todo index with name
+Find a todo with name
     [Arguments]   ${name}
+
     @{all_todos} =    Get WebElements     ${TODO_ITEM}
-    ${index} =      Set variable    ${1}
     FOR   ${todo}   IN   @{all_todos}
         ${todo_name} =    Get Text     ${todo}
-        Return From Keyword If    '${todo_name}' == '${name}'     ${index}
-        ${index} =    Evaluate    ${index} + 1
+        Return From Keyword If    '${todo_name}' == '${name}'     ${todo}
     END
-
-

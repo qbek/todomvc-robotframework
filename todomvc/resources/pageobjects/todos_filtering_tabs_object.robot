@@ -1,5 +1,5 @@
 *** Settings ***
-Library   SeleniumLibrary
+Library    SeleniumWrapper.py
 
 *** Variables ***
 ${ACTIVE_TAB} =    css:[href="#/active"]

@@ -1,5 +1,5 @@
 *** Settings ***
-Library    SeleniumLibrary
+Library    SeleniumWrapper.py
 
 *** Variables ***
 ${TODO_INPUT} =    css:.new-todo

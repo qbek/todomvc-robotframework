@@ -1,5 +1,5 @@
 *** Settings ***
-Library    SeleniumLibrary
+Library    SeleniumWrapper.py
 
 *** Keywords ***
 Open application
