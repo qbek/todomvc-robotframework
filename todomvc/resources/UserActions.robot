@@ -23,6 +23,9 @@ User creates few todos
         Create new todo    ${todo}
     END
 
+User creates the one
+    Create new todo    DELETE ME!!!
+
 User checks if counter shows correct todos count
     ${expected} =     Get count of existing todos
     Check if counter shows     ${expected}
@@ -38,6 +41,13 @@ User checks if all todos were created
 User completes the todo
     Complete todo
 
+User deletes a todo
+    Delete todo    ${todoName}
+
+User deletes the one
+    Delete todo    DELETE ME!!!
+
+
 User checks if todo is marked as completed
     Check if todo is marked as completed
 
@@ -48,3 +58,8 @@ User checks if todo is not on Active tab
 User checks if todo is on Completed tab
     Switch to Completed filter
     Check if todo is visible     ${todoName}
+
+User checks if todo was deleted
+    Check if todo is NOT visible     ${todoName}
+
+
