@@ -9,11 +9,13 @@ Test Teardown    User closes TodoMVC app
 
 *** Test Cases ***
 User can complete a todo
+    [Tags]   th1
     User enters a todo
     User completes the todo
     User checks if todo is marked as completed
 
 Completed todo is not listed on Active tab
+    [Tags]   th2
     User enters a todo
     User completes the todo
     User checks if todo is not on Active tab

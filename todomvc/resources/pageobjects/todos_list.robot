@@ -1,10 +1,16 @@
 *** Settings ***
 Library    SeleniumLibrary
+Library    String
 
 *** Variables ***
 ${TODOS_LIST} =    css:.todo-list
 ${TODO_ITEM} =     ${TODOS_LIST} li
 ${TODO_ITEM_COMPLETE_TOGGLE} =     ${TODO_ITEM} .toggle
+
+${TODO_ITEM_BY_INDEX} =    ${TODOS_LIST} li:nth-child(<INDEX>)
+${TODO_ITEM_DELETE_BY_INDEX} =     ${TODO_ITEM_BY_INDEX} .destroy
+
+
 
 *** Keywords ***
 Check if todo is visible
@@ -29,6 +35,29 @@ Check if todo is marked as completed
 
 Complete todo
     Click element    ${TODO_ITEM_COMPLETE_TOGGLE}
+
+Delete todo
+    [Arguments]   ${name}
+    ${id} =    Find todo index by name     ${name}
+    ${id_str} =     Convert To String    ${id}
+    ${todoToMO} =   Replace String   ${TODO_ITEM_BY_INDEX}    <INDEX>     ${id_str}
+    ${todoToDel} =   Replace String   ${TODO_ITEM_DELETE_BY_INDEX}    <INDEX>     ${id_str}
+    Mouse Over    ${todoToMO}
+    Click element    ${todoToDel}
+
+
+Find todo index by name
+    [Arguments]    ${name}
+    @{todos} =    Get WebElements    ${TODO_ITEM}
+    ${index} =    Set variable    ${1}
+
+    FOR   ${todo}    IN     @{todos}
+        ${actual} =     Get text    ${todo}
+        Return From Keyword If    '${actual}' == '${name}'    ${index}
+        ${index} =     Evaluate     ${index} + ${1}
+    END
+
+
 
 Get count of existing todos
     ${count} =     Get Element Count    ${TODO_ITEM}
