@@ -2,7 +2,8 @@
 Library    SeleniumLibrary
 Test Teardown   Close browser
 Resource    resources/User_actions.robot
-Resource    data/env_jquery.robot
+Resource    data/env_${ENV}.robot
+Resource    data/td_${TD}.robot
 
 
 *** Test Cases ***
