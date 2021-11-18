@@ -1,5 +1,4 @@
 *** Settings ***
-Library    SeleniumLibrary
 Test Teardown   Close browser
 Resource    resources/User_actions.robot
 Resource    data/env_${ENV}.robot

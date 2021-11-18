@@ -1,3 +1,6 @@
+*** Settings ***
+Library    SeleniumLibrary
+
 *** Variables ***
 ${ACTIVE_FILTER} =    css:.filters [href="#/active"]
 ${COMPLETED_FILTER} =    css:.filters [href="#/completed"]

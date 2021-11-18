@@ -9,10 +9,10 @@ User opens TodoMVC app
     Wait until page contains element     ${TODO_INPUT}
 
 User adds a new todo
-    Create new todo
+    Create new todo     ${TODO_NAME}
 
 User checks if todo was created
-    Check if todo is on the list
+    Check if todo is on the list    ${TODO_NAME}
 
 User completes the todo
     Complete todo
@@ -22,8 +22,8 @@ User checks if todo is marked as completed
 
 User checks if completed todo is not on Active tab
     Switch to Active tab
-    Check if todo is NOT on the list
+    Check if todo is NOT on the list    ${TODO_NAME}
 
 User checks if completed todo is on Completed tab
     Switch to Completed tab
-    Check if todo is on the list
+    Check if todo is on the list     ${TODO_NAME}
