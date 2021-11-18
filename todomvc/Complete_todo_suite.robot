@@ -7,6 +7,7 @@ Resource    data/td_${TD}.robot
 
 *** Test Cases ***
 User can complete a todo
+    [Tags]    smoke
     User opens TodoMVC app
     User adds a new todo
     User completes the todo

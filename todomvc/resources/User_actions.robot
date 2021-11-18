@@ -13,12 +13,9 @@ User adds a new todo
     Create new todo     ${TODO_NAME}
 
 User adds a few todos
-    Create new todo    ${TODO_NAMES}[0]
-
-
-#    FOR  ${todo}   IN   @{TODO_NAMES}
-#        Create new todo    ${todo}
-#    END
+    FOR  ${todo}   IN   @{TODO_NAMES}
+        Create new todo    ${todo}
+    END
 
 User checks if todo was created
     Check if todo is on the list    ${TODO_NAME}
