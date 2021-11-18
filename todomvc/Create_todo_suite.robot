@@ -6,9 +6,12 @@ Resource    data/td_${TD}.robot
 
 
 *** Test Cases ***
-User can create a new todo
+#User can create a new todo
+#    User opens TodoMVC app
+#    User adds a new todo
+#    User checks if todo was created
+
+User can create a few todos
     User opens TodoMVC app
-    User adds a new todo
-    User checks if todo was created
-
-
+    User adds a few todos
+    User checks if counter shows correct value

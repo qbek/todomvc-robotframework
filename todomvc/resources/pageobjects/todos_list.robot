@@ -24,3 +24,7 @@ Check if todo is completed
 Complete todo
     Select checkbox   ${TODO_COMPLETE_CHECKBOX}
     Capture page screenshot
+
+Get count of todos on the list
+    ${count} =    Get element count    ${TODO_ELEMENT}
+    Return from keyword    ${count}

@@ -2,6 +2,7 @@
 Resource   pageobjects/todo_input.robot
 Resource   pageobjects/todos_list.robot
 Resource   pageobjects/todo_filters.robot
+Resource   pageobjects/todo_counter.robot
 
 *** Keywords ***
 User opens TodoMVC app
@@ -10,6 +11,14 @@ User opens TodoMVC app
 
 User adds a new todo
     Create new todo     ${TODO_NAME}
+
+User adds a few todos
+    Create new todo    ${TODO_NAMES}[0]
+
+
+#    FOR  ${todo}   IN   @{TODO_NAMES}
+#        Create new todo    ${todo}
+#    END
 
 User checks if todo was created
     Check if todo is on the list    ${TODO_NAME}
@@ -27,3 +36,9 @@ User checks if completed todo is not on Active tab
 User checks if completed todo is on Completed tab
     Switch to Completed tab
     Check if todo is on the list     ${TODO_NAME}
+
+User checks if counter shows correct value
+    # pierwsze podejscie z wyliczeniem dlugosci tablicy
+#    ${count} =     Get length     ${TODO_NAMES}
+    ${count} =   Get count of todos on the list
+    Check if counter shows    ${count}
