@@ -18,7 +18,8 @@ Check if todo is NOT on the list
     Capture page screenshot
 
 Check if todo is completed
-    Element attribute value should be     ${TODO_ELEMENT}     class     completed
+    ${classes} =     Get element attribute     ${TODO_ELEMENT}     class
+    Should contain     ${classes}    completed
     Capture page screenshot
 
 Complete todo
