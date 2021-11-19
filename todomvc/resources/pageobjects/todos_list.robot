@@ -5,6 +5,7 @@ Library    SeleniumLibrary
 ${TODO_LIST} =    css:.todo-list
 ${TODO_ELEMENT} =   css:.todo-list li
 ${TODO_COMPLETE_CHECKBOX} =    css:.todo-list li .toggle
+${TODO_DELETE_BUTTON} =    css:.todo-list li .destroy
 
 *** Keywords ***
 Check if todo is on the list
@@ -25,6 +26,10 @@ Check if todo is completed
 Complete todo
     Select checkbox   ${TODO_COMPLETE_CHECKBOX}
     Capture page screenshot
+
+Delete todo
+    Mouse over     ${TODO_ELEMENT}
+    Click element   ${TODO_DELETE_BUTTON}
 
 Get count of todos on the list
     ${count} =    Get element count    ${TODO_ELEMENT}
