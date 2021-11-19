@@ -10,10 +10,12 @@ User opens TodoMVC app
     Wait until page contains element     ${TODO_INPUT}
 
 User adds a new todo
+    Set test variable TODO_NAME
     Create new todo     ${TODO_NAME}
 
 User adds a few todos
-    FOR  ${todo}   IN   @{TODO_NAMES}
+    Set test variable TODO_NAMES
+    FOR    ${todo}   IN   @{TODO_NAMES}
         Create new todo    ${todo}
     END
 
