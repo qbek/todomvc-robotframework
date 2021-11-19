@@ -29,7 +29,10 @@ User completes the todo
     Complete todo
 
 User deletes the todo
-    Delete todo
+    Delete todo   ${TODO_NAME}
+
+User deletes THE ONE
+    Delete todo     DELETE ME!!!
 
 User checks if todo is marked as completed
     Check if todo is completed
