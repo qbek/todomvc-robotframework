@@ -6,12 +6,24 @@ Test Teardown     Close Browser
 ${TODOMVC_URL} =    https://todomvc.com/examples/jquery/#/all
 ${NEW_TODO} =     css:.new-todo
 ${TODOS_LIST} =    css:.todo-list
+${TODO} =         css:.todo-list li
+${COMPLETE_TODO} =    css:.toggle
+${ACTIVE_TAB} =    css:[href="#/active"]
+${COMPLETED_TAB} =    css:[href="#/completed"]
 
 *** Test Cases ***
 User can create a task
     User has TodoMVC app opened
     User creates a new todo
     User checks if todo was created
+
+Use can complete a todo
+    User has TodoMVC app opened
+    User creates a new todo
+    User completes the todo
+    User checks if todo is completed
+    User checks if todo is NOT on Active tab
+    User checks if todo is on Completed tab
 
 *** Keywords ***
 User has TodoMVC app opened
@@ -24,4 +36,18 @@ User creates a new todo
     Press Keys    ${NEW_TODO}    RETURN
 
 User checks if todo was created
+    Element Text Should Be    ${TODOS_LIST}    ${todoName}
+
+User completes the todo
+    Select Checkbox    ${COMPLETE_TODO}
+
+User checks if todo is completed
+    Element Attribute Value Should Be    ${TODO}    class    completed
+
+User checks if todo is NOT on Active tab
+    Click element    ${ACTIVE_TAB}
+    Element Text Should Not Be    ${TODOS_LIST}    ${todoName}
+
+User checks if todo is on Completed tab
+    Click Element    ${COMPLETED_TAB}
     Element Text Should Be    ${TODOS_LIST}    ${todoName}
