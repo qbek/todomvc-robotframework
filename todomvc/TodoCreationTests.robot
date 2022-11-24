@@ -1,7 +1,7 @@
 *** Settings ***
 Resource          steps/UserActions.robot
 Resource          steps/UserPreconditions.robot
-Test Teardown     Close Browser
+Test Teardown     User closes TodoMVC app
 
 *** Test Cases ***
 User can create a task

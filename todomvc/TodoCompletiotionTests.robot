@@ -2,10 +2,10 @@
 Resource          steps/UserActions.robot
 Resource          steps/UserPreconditions.robot
 Test Setup        User has TodoMVC app opened
-Test Teardown     Close Browser
+Test Teardown     User closes TodoMVC app
 
 *** Test Cases ***
-Use can complete a todo
+User can complete a todo
     User has created todo
     User completes the todo
     User checks if todo is completed
