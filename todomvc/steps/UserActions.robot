@@ -11,10 +11,6 @@ ${ACTIVE_TAB} =    css:[href="#/active"]
 ${COMPLETED_TAB} =    css:[href="#/completed"]
 
 *** Keywords ***
-User has TodoMVC app opened
-    Open Browser    ${TODOMVC_URL}    firefox
-    Wait Until Element Is Visible    ${NEW_TODO}
-
 User creates a new todo
     Set Test Variable    ${todoName}    Moje pierwsze zadanie
     Input Text    ${NEW_TODO}    ${todoName}

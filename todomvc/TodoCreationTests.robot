@@ -1,5 +1,6 @@
 *** Settings ***
 Resource          steps/UserActions.robot
+Resource          steps/UserPreconditions.robot
 Test Teardown     Close Browser
 
 *** Test Cases ***
