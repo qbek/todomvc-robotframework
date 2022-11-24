@@ -1,10 +1,11 @@
 *** Settings ***
 Resource          UserActions.robot
+Resource          ../pageobjects/TodoInput.robot
 
 *** Keywords ***
 User has TodoMVC app opened
     Open Browser    ${TODOMVC_URL}    firefox
-    Wait Until Element Is Visible    ${NEW_TODO}
+    Wait for TodoMVC app to be ready
 
 User has created todo
     User creates a new todo
