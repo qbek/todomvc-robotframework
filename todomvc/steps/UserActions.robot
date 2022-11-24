@@ -1,6 +1,5 @@
 *** Settings ***
 Library           SeleniumLibrary
-Test Teardown     Close Browser
 
 *** Variables ***
 ${TODOMVC_URL} =    https://todomvc.com/examples/jquery/#/all
@@ -10,20 +9,6 @@ ${TODO} =         css:.todo-list li
 ${COMPLETE_TODO} =    css:.toggle
 ${ACTIVE_TAB} =    css:[href="#/active"]
 ${COMPLETED_TAB} =    css:[href="#/completed"]
-
-*** Test Cases ***
-User can create a task
-    User has TodoMVC app opened
-    User creates a new todo
-    User checks if todo was created
-
-Use can complete a todo
-    User has TodoMVC app opened
-    User creates a new todo
-    User completes the todo
-    User checks if todo is completed
-    User checks if todo is NOT on Active tab
-    User checks if todo is on Completed tab
 
 *** Keywords ***
 User has TodoMVC app opened
