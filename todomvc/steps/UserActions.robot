@@ -34,3 +34,9 @@ User creates a few todos
 
 User checks if all todos were created
     All todos are on the list    @{todoNames}
+
+User deletes todo
+    Delete todo
+
+User checks if todo was deleted
+    Todo is NOT on the list    ${todoName}
