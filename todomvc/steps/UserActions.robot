@@ -1,5 +1,5 @@
 *** Settings ***
-Resource          ../testdata/TD_Random.robot
+Resource          ../testdata/TD_${TD}.robot
 Resource          ../pageobjects/TodoInput.robot
 Resource          ../pageobjects/TodoFilters.robot
 Resource          ../pageobjects/TodosList.robot
