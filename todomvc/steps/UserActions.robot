@@ -1,11 +1,12 @@
 *** Settings ***
+Resource          ../testdata/TD_Random.robot
 Resource          ../pageobjects/TodoInput.robot
 Resource          ../pageobjects/TodoFilters.robot
 Resource          ../pageobjects/TodosList.robot
 
 *** Keywords ***
 User creates a new todo
-    Set Test Variable    ${todoName}    Moje pierwsze zadanie
+    Setup todoName test variable
     Create todo    ${todoName}
 
 User checks if todo was created
@@ -24,3 +25,12 @@ User checks if todo is NOT on Active tab
 User checks if todo is on Completed tab
     Go to Completed Tab
     Todo is on the list    ${todoName}
+
+User creates a few todos
+    Setup todoNames test variable
+    FOR    ${name}    IN    @{todoNames}
+        Create todo    ${name}
+    END
+
+User checks if all todos were created
+    All todos are on the list    @{todoNames}
