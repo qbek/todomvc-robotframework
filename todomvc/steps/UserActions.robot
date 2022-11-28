@@ -40,3 +40,9 @@ User deletes todo
 
 User checks if todo was deleted
     Todo is NOT on the list    ${todoName}
+
+User creates THE ONE
+    Create todo    THE ONE
+
+User deletes THE ONE
+    Delete todo    THE ONE
