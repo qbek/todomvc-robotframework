@@ -7,7 +7,6 @@ Library           String
 ${TODOS_LIST} =    css:.todo-list
 ${TODO} =         css:.todo-list li
 ${COMPLETE_TODO} =    css:.toggle
-${DELETE_TODO} =    css:.destroy
 ${TODO_BY_INDEX} =    ${TODO}:nth-child(<INDEX>)
 ${DELETE_TODO_BY_INDEX} =    ${TODO_BY_INDEX} .destroy
 
@@ -18,12 +17,7 @@ Todo is on the list
 
 All todos are on the list
     [Arguments]    @{expectedNames}
-    @{allTodos} =    Get WebElements    ${TODO}
-    @{allNames} =    Create List
-    FOR    ${todo}    IN    @{allTodos}
-        ${name} =    Get text    ${todo}
-        Append To List    ${allNames}    ${name}
-    END
+    @{allNames} =    Get all todos names
     Lists Should Be Equal    ${allNames}    ${expectedNames}
 
 Todo is NOT on the list
@@ -39,19 +33,24 @@ Check if todo marked as completed
 Delete todo
     [Arguments]    ${name}
     ${index} =    Find todo index by name    ${name}
-    ${idx_str} =    Convert To String    ${index}
-    ${todo_mouseOver} =    Replace string    ${TODO_BY_INDEX}    <INDEX>    ${idx_str}
-    ${todo_delete} =    Replace String    ${DELETE_TODO_BY_INDEX}    <INDEX>    ${idx_str}
+    ${todo_mouseOver} =    Replace string    ${TODO_BY_INDEX}    <INDEX>    ${index}
+    ${todo_delete} =    Replace String    ${DELETE_TODO_BY_INDEX}    <INDEX>    ${index}
     Mouse Over    ${todo_mouseOver}
     Click Button    ${todo_delete}
 
 Find todo index by name
     [Arguments]    ${name}
+    @{allNames} =    Get all todos names
+    ${idx} =    Get Index From List    ${allNames}    ${name}
+    ${idx} =    Evaluate    ${idx} + 1
+    ${idx_str} =    Convert To String    ${idx}
+    Return From Keyword    ${idx_str}
+
+Get all todos names
     @{allTodos} =    Get WebElements    ${TODO}
-    ${idx} =    Set Variable    ${1}
+    @{allNames} =    Create List
     FOR    ${todo}    IN    @{allTodos}
-        ${todoName} =    Get Text    ${todo}
-        Log    ${idx} - ${todoName}    console=True
-        Return From Keyword If    '${todoName}' == '${name}'    ${idx}
-        ${idx} =    Evaluate    ${idx} + 1
+        ${name} =    Get text    ${todo}
+        Append To List    ${allNames}    ${name}
     END
+    Return From Keyword    @{allNames}
