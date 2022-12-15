@@ -2,6 +2,7 @@
 Test Teardown     Close Browser
 Resource          steps/PreconditionSteps.robot
 Resource          steps/ActionsSteps.robot
+Resource          steps/VerificationSteps.robot
 
 *** Test Cases ***
 User can create a new todo
