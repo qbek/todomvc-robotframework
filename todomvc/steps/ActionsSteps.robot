@@ -1,10 +1,9 @@
 *** Settings ***
 Library           SeleniumLibrary
+Resource          ../pageobjects/new_todo_input.robot
 
 *** Variables ***
 ${todoName} =     Nowe lepsze zadanie
-${TODOMVC_URL} =    https://todomvc.com/examples/jquery/#/all
-${NEW_TODO} =     css:.new-todo
 ${TODOS_LIST} =    css:.todo-list
 ${TODO} =         css:.todo-list li
 ${TODO_COMPLETE_TOGGLE} =    css:.toggle
@@ -12,13 +11,8 @@ ${ACTIVE_FILTER} =    css:[href="#/active"]
 ${COMPLETED_FILTER} =    css:[href="#/completed"]
 
 *** Keywords ***
-User is on TodoMVC app
-    Open Browser    ${TODOMVC_URL}    firefox
-    Wait Until Element Is Visible    ${NEW_TODO}
-
 User creates new todo
-    Input Text    ${NEW_TODO}    ${todoName}
-    Press Keys    ${NEW_TODO}    RETURN
+    Create todo    ${todoName}
 
 User checks if new todo is listed
     Element Text Should Be    ${TODOS_LIST}    ${todoName}

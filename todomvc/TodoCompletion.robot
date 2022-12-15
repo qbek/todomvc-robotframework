@@ -1,5 +1,5 @@
 *** Settings ***
-Test Setup        User is on TodoMVC app
+Test Setup        User has TodoMVC app open
 Test Teardown     Close Browser
 Resource          steps/ActionsSteps.robot
 Resource          steps/PreconditionSteps.robot
