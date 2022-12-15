@@ -12,11 +12,11 @@ ${ACTIVE_FILTER} =    css:[href="#/active"]
 ${COMPLETED_FILTER} =    css:[href="#/completed"]
 
 *** Keywords ***
-User opens TodoMVC app
+User is on TodoMVC app
     Open Browser    ${TODOMVC_URL}    firefox
     Wait Until Element Is Visible    ${NEW_TODO}
 
-User creats new todo
+User creates new todo
     Input Text    ${NEW_TODO}    ${todoName}
     Press Keys    ${NEW_TODO}    RETURN
 
