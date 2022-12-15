@@ -1,12 +1,10 @@
 *** Settings ***
 Library           SeleniumLibrary
 Resource          ../pageobjects/new_todo_input.robot
+Resource          ../pageobjects/todos_list.robot
 
 *** Variables ***
 ${todoName} =     Nowe lepsze zadanie
-${TODOS_LIST} =    css:.todo-list
-${TODO} =         css:.todo-list li
-${TODO_COMPLETE_TOGGLE} =    css:.toggle
 ${ACTIVE_FILTER} =    css:[href="#/active"]
 ${COMPLETED_FILTER} =    css:[href="#/completed"]
 
@@ -15,7 +13,7 @@ User creates new todo
     Create todo    ${todoName}
 
 User checks if new todo is listed
-    Element Text Should Be    ${TODOS_LIST}    ${todoName}
+    Check if todo is listed    ${todoName}
 
 User completes a todo
     Select Checkbox    ${TODO_COMPLETE_TOGGLE}
