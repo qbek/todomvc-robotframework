@@ -1,5 +1,6 @@
 *** Settings ***
 Resource          ActionsSteps.robot
+Resource          VerificationSteps.robot
 Resource          ../pageobjects/new_todo_input.robot
 
 *** Variables ***

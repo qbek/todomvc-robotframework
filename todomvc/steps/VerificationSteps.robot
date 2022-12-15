@@ -16,3 +16,6 @@ User checks if completed todo is NOT on Active tab
 User checks if completed todo is on Completed tab
     Go to Completed filter
     Check if todo is listed    ${todoName}
+
+User checks if all todos are listed
+    Check if all todos are listed
