@@ -1,5 +1,6 @@
 *** Settings ***
 Library           SeleniumLibrary
+Library           Collections
 
 *** Variables ***
 ${TODOS_LIST} =    css:.todo-list
@@ -17,9 +18,23 @@ Check if todo is NOT listed
 
 Check if all todos are listed
     [Arguments]    @{names}
-    FOR    ${name}    IN    @{names}
-        Element Should Contain    ${TODOS_LIST}    ${name}
-    END
+    # FOR    ${name}    IN    @{names}
+    #     Element Should Contain    ${TODOS_LIST}    ${name}
+    # END
+    # @{allTodos} =    Get WebElements    ${TODO}
+    # ${todoCount} =    Get Length    ${allTodos}
+    # ${expectedTodoCount} =    Get Length    ${names}
+    # Should Be Equal As Integers    ${todoCount}    ${expectedTodoCount}
+    
+    @{actualNames} =    Create List
+    @{allTodos} =    Get WebElements    ${TODO}
+    FOR   ${todo}   IN   @{allTodos}
+        ${text} =    Get Text     ${todo}
+        Append To List    ${actualNames}    ${text}
+    END 
+    Lists Should Be Equal    ${actualNames}    ${names}
+
+
 
 Complete todo
     Select Checkbox    ${TODO_COMPLETE_TOGGLE}

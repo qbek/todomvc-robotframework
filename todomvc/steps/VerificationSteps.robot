@@ -2,6 +2,7 @@
 Resource          ../pageobjects/todos_list.robot
 Resource          ../pageobjects/todo_filters.robot
 
+
 *** Keywords ***
 User checks if new todo is listed
     Check if todo is listed    ${todoName}
@@ -18,4 +19,4 @@ User checks if completed todo is on Completed tab
     Check if todo is listed    ${todoName}
 
 User checks if all todos are listed
-    Check if all todos are listed
+    Check if all todos are listed    @{todosNames}
