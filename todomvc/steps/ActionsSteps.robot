@@ -16,6 +16,14 @@ User completes a todo
 User creates a few todos
     Setup test variable todosNames
     FOR    ${name}    IN    @{todosNames}
-        Log    ${name}    console=True
         Create todo    ${name}
     END
+
+User deletes todo
+    Delete todo
+
+User create THE ONE
+    Create todo   THE ONE
+
+User deletes THE ONE
+    Delete todo THE ONE

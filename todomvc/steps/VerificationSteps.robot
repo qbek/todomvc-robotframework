@@ -20,3 +20,6 @@ User checks if completed todo is on Completed tab
 
 User checks if all todos are listed
     Check if all todos are listed    @{todosNames}
+
+User checks if deleted todo is not listed
+    Check if todo is NOT listed   ${todoName}
