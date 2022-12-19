@@ -31,12 +31,7 @@ Check if all todos are listed
     # ${expectedTodoCount} =    Get Length    ${names}
     # Should Be Equal As Integers    ${todoCount}    ${expectedTodoCount}
     
-    @{actualNames} =    Create List
-    @{allTodos} =    Get WebElements    ${TODO}
-    FOR   ${todo}   IN   @{allTodos}
-        ${text} =    Get Text     ${todo}
-        Append To List    ${actualNames}    ${text}
-    END 
+    @{actualNames} =   Get all displayed todo names for todos-list
     Lists Should Be Equal    ${actualNames}    ${names}
 
 Complete todo
@@ -49,9 +44,8 @@ Delete todo
     [Arguments]    ${name}
     ${todoIndex} =   Find todo index by name    ${name}
     Log     Todo with name THE ONE has index: ${todoIndex}    console=True
-    ${index_str} =    Convert To String    ${todoIndex}
-    ${todoByIndex} =    Replace String    ${TODO_BY_INDEX}    <INDEX>     ${index_str}
-    ${todoDeleteByIndex} =    Replace String    ${TODO_DELETE_BY_INDEX}    <INDEX>     ${index_str}
+    ${todoByIndex} =    Replace String    ${TODO_BY_INDEX}    <INDEX>     ${todoIndex}
+    ${todoDeleteByIndex} =    Replace String    ${TODO_DELETE_BY_INDEX}    <INDEX>     ${todoIndex}
 
     Mouse Over    ${todoByIndex}
     Click Element    ${todoDeleteByIndex}
@@ -59,11 +53,26 @@ Delete todo
 
 Find todo index by name
     [Arguments]    ${name}
+    # ${index} =   Set Variable   ${1}
+    # @{allTodos} =    Get WebElements    ${TODO}
+    # FOR     ${todo}      IN    @{allTodos}
+    #     ${currentTodoName} =    Get Text    ${todo}
+    #     Log      ${index} - ${currentTodoName}    console=True
+    #     Return From Keyword If    '${currentTodoName}' == '${name}'     ${index}
+    #     ${index} =    Evaluate    ${index} + 1
+    # END
+
+    @{allTodos} =     Get all displayed todo names for todos-list
+    ${index} =    Get Index From List   ${allTodos}    ${name}
+    ${index} =    Evaluate     ${index} + 1
+    ${index_str} =    Convert To String    ${index}
+    Return From Keyword    ${index_str}
+
+Get all displayed todo names for todos-list
+    @{actualNames} =    Create List
     @{allTodos} =    Get WebElements    ${TODO}
-    ${index} =   Set Variable   ${1}
-    FOR     ${todo}      IN    @{allTodos}
-        ${currentTodoName} =    Get Text    ${todo}
-        Log      ${index} - ${currentTodoName}    console=True
-        Return From Keyword If    '${currentTodoName}' == '${name}'     ${index}
-        ${index} =    Evaluate    ${index} + 1
+    FOR   ${todo}   IN   @{allTodos}
+        ${text} =    Get Text     ${todo}
+        Append To List    ${actualNames}    ${text}
     END
+    Return From Keyword    @{actualNames}
