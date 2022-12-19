@@ -20,10 +20,10 @@ User creates a few todos
     END
 
 User deletes todo
-    Delete todo
+    Delete todo    ${todoName}
 
 User create THE ONE
     Create todo   THE ONE
 
 User deletes THE ONE
-    Delete todo THE ONE
+    Delete todo    THE ONE

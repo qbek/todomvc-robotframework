@@ -46,16 +46,9 @@ Check if todo completed
     Element Attribute Value Should Be    ${TODO}    class    completed
 
 Delete todo
-    Mouse Over    ${TODO}
-    Click element     ${TODO_DELETE}
-
-Delete todo THE ONE
-    # Mouse Over    ${TODO}:nth-child(3)
-    # Click element     ${TODO}:nth-child(3) .destroy
-
-    ${todoIndex} =   Find todo index by name    THE ONE
+    [Arguments]    ${name}
+    ${todoIndex} =   Find todo index by name    ${name}
     Log     Todo with name THE ONE has index: ${todoIndex}    console=True
-
     ${index_str} =    Convert To String    ${todoIndex}
     ${todoByIndex} =    Replace String    ${TODO_BY_INDEX}    <INDEX>     ${index_str}
     ${todoDeleteByIndex} =    Replace String    ${TODO_DELETE_BY_INDEX}    <INDEX>     ${index_str}
