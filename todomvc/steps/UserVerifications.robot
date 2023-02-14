@@ -18,3 +18,6 @@ User checks if completed todo is NOT on Active list
 User checks if completed todo is on Completed list
     Goto Completed filter
     Check if todo is visible on the list     ${todoName}
+
+User checks if all todos were created
+    Check if all todos are visible     @{fewTodoNames}
