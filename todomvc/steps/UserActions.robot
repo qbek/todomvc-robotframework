@@ -5,6 +5,7 @@ Resource    ../pageobjects/TodoMVC.robot
 Resource    ../data/TestData.robot
 
 
+
 *** Keywords ***
 User opens TodoMVC app
     Open TodoMVC app
@@ -14,6 +15,7 @@ User closes TodoMVC app
     Close TodoMVC app
 
 User creates a new todo
+    Setup $todoName test variable
     Create new todo     ${todoName}
 
 User marks todo as completed

@@ -12,6 +12,7 @@ ${TODO_COMPLETE_TOGGLE} =     css:.toggle
 Check if todo is visible on the list
     [Arguments]    ${name}
     Element Text Should Be    ${TODOS_LIST}    ${name}
+    Capture Page Screenshot
 
 
 Check if all todos are visible
