@@ -19,4 +19,7 @@ User creates a new todo
 User marks todo as completed
     Mark todo as completed
 
-
+User creates a few todos
+    FOR   ${name}    IN     @{fewTodoNames}
+        Create new todo     ${name}
+    END

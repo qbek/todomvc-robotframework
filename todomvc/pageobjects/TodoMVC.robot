@@ -1,9 +1,6 @@
 *** Settings ***
 Library     SeleniumLibrary
-
-*** Variables ***
-${TODOMVC_URL} =    https://todomvc.com/examples/jquery/#/all
-${BROWSER} =     firefox
+Resource    ../data/Env${ENV}.robot
 
 
 *** Keywords ***
