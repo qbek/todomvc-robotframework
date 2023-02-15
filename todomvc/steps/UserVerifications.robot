@@ -1,7 +1,7 @@
 *** Settings ***
 Resource    ../pageobjects/TodosList.robot
 Resource    ../pageobjects/TodoFilters.robot
-Resource    ../data/TestData.robot
+
 
 
 *** Keywords ***

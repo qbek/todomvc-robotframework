@@ -32,3 +32,9 @@ User creates a few todos
 
 User deletes the todo
     Delete todo
+
+User creates THE ONE
+    Create new todo     THE ONE
+
+User deletes THE ONE
+    Delete todo THE ONE

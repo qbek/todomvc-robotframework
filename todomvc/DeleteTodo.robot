@@ -12,4 +12,8 @@ User can delete todo
     User deletes the todo
     User checks if todo was deleted
 
-
+User can delete THE ONE
+    User creates a few todos
+    User creates THE ONE
+    User creates a few todos
+    User deletes THE ONE
