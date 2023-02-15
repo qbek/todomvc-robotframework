@@ -29,12 +29,7 @@ Check if all todos are visible
     # @{allTodos} =      Get WebElements     ${TODO_ITEM}
     # Length Should Be     ${allTodos}     ${expectedCount}    msg=There are wrong number of created todos
 
-    @{createdNames} =    Create List
-    @{allTodos} =      Get WebElements     ${TODO_ITEM}
-    FOR    ${todo}    IN     @{allTodos}
-        ${todoName} =    Get Text     ${todo}
-        Append To List    ${createdNames}     ${todoName}
-    END
+    @{createdNames} =    Get all todo names
     Lists Should Be Equal     ${createdNames}     ${expectedNames}    ignore_order=True
     
 
@@ -55,21 +50,25 @@ Delete todo
 Delete todo THE ONE
     ${index} =      Find todo index by name     THE ONE
     Log     Index: ${index}     console=True
-
-    ${indexStr} =    Convert To String    ${index}
-    ${todoByIndex} =    Replace String    ${TODO_ITEM_BY_INDEX}     <index>      ${indexStr}
-    ${deleteByIndex} =    Replace String    ${TODO_DELETE_BUTTON_BY_INDEX}    <index>   ${indexStr}
-
+    ${todoByIndex} =    Replace String    ${TODO_ITEM_BY_INDEX}     <index>      ${index}
+    ${deleteByIndex} =    Replace String    ${TODO_DELETE_BUTTON_BY_INDEX}    <index>   ${index}
     Mouse Over    ${todoByIndex}
     Click element    ${deleteByIndex}
 
+Get all todo names
+    @{names} =    Create List
+    @{allTodos} =      Get WebElements     ${TODO_ITEM}
+    FOR    ${todo}    IN     @{allTodos}
+        ${todoName} =    Get Text     ${todo}
+        Append To List    ${names}     ${todoName}
+    END
+    Return From Keyword     @{names}
 
 Find todo index by name
-    [Arguments]    ${name}    
-    ${index} =    Set Variable      ${1}
-    @{allTodos} =     Get WebElements    ${TODO_ITEM}
-    FOR    ${todo}     IN     @{allTodos}
-        ${todoName} =    Get Text     ${todo}
-        Return From Keyword If    '${todoName}' == '${name}'    ${index}
-        ${index} =    Evaluate      ${index} + 1
-    END 
+    [Arguments]    ${name}
+    @{names} =    Get all todo names
+    ${index} =    Get Index From List     ${names}     ${name}
+    ${index} =    Evaluate     ${index} + 1
+    ${indexStr} =    Convert To String    ${index}
+    Return From Keyword    ${indexStr}
+
