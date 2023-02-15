@@ -21,3 +21,6 @@ User checks if completed todo is on Completed list
 
 User checks if all todos were created
     Check if all todos are visible     @{fewTodoNames}
+
+User checks if todo was deleted
+    Check if todo in NOT visible on the list     ${todoName}

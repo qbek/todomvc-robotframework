@@ -6,6 +6,7 @@ Library     Collections
 ${TODOS_LIST} =    css:.todo-list
 ${TODO_ITEM} =    ${TODOS_LIST} li
 ${TODO_COMPLETE_TOGGLE} =     css:.toggle
+${TODO_DELETE_BUTTON} =     css:.destroy
 
 
 *** Keywords ***
@@ -42,3 +43,8 @@ Mark todo as completed
 
 Check if todo is marked as completed
     Element Attribute Value Should Be     ${TODO_ITEM}     class     completed
+
+
+Delete todo
+    Mouse Over     ${TODO_ITEM}
+    Click Element     ${TODO_DELETE_BUTTON}

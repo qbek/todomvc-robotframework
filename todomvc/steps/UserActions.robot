@@ -18,7 +18,7 @@ User closes TodoMVC app
 
 User creates a new todo
     Setup $todoName test variable
-    Create new todo     ${todoName}
+    # Create new todo     ${todoName}
 
 User marks todo as completed
     Mark todo as completed
@@ -29,3 +29,6 @@ User creates a few todos
         Create new todo     ${name}
     END
     # Create new todo      Hahaha... jeszcze jeden
+
+User deletes the todo
+    Delete todo
