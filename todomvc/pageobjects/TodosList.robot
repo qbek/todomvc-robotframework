@@ -6,11 +6,9 @@ Library     String
 *** Variables ***
 ${TODOS_LIST} =    css:.todo-list
 ${TODO_ITEM} =    ${TODOS_LIST} li
-${TODO_COMPLETE_TOGGLE} =     css:.toggle
-${TODO_DELETE_BUTTON} =     css:.destroy
-
 ${TODO_ITEM_BY_INDEX} =     ${TODO_ITEM}:nth-child(<index>)
 ${TODO_DELETE_BUTTON_BY_INDEX} =     ${TODO_ITEM_BY_INDEX} .destroy
+${TODO_COMPLETE_TOGGLE_BY_INDEX} =     ${TODO_ITEM_BY_INDEX} .toggle
 
 
 *** Keywords ***
@@ -38,17 +36,17 @@ Check if todo in NOT visible on the list
     Element Text Should Not Be     ${TODOS_LIST}     ${name}
  
 Mark todo as completed
-    Select Checkbox     ${TODO_COMPLETE_TOGGLE}
+    [Arguments]    ${name}
+    ${index} =      Find todo index by name     ${name}
+    ${toggleByIndex} =    Replace String    ${TODO_COMPLETE_TOGGLE_BY_INDEX}    <index>   ${index}
+    Select Checkbox     ${toggleByIndex}
 
 Check if todo is marked as completed
     Element Attribute Value Should Be     ${TODO_ITEM}     class     completed
 
 Delete todo
-    Mouse Over     ${TODO_ITEM}
-    Click Element     ${TODO_DELETE_BUTTON}
-
-Delete todo THE ONE
-    ${index} =      Find todo index by name     THE ONE
+    [Arguments]     ${name}
+    ${index} =      Find todo index by name     ${name}
     Log     Index: ${index}     console=True
     ${todoByIndex} =    Replace String    ${TODO_ITEM_BY_INDEX}     <index>      ${index}
     ${deleteByIndex} =    Replace String    ${TODO_DELETE_BUTTON_BY_INDEX}    <index>   ${index}
