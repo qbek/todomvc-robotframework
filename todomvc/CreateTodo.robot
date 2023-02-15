@@ -15,4 +15,3 @@ User can create a few todos
     User creates a few todos
     User checks if all todos were created
 
-

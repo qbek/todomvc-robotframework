@@ -4,6 +4,8 @@ Resource    ../pageobjects/TodosList.robot
 Resource    ../pageobjects/TodoMVC.robot
 Resource    ../data/TestData.robot
 
+*** Variables ***
+@{broken} =     Pierwszezadanie       Trzecie zadanie     Czwarte zadanie2     Drugie zadanie
 
 
 *** Keywords ***
@@ -22,7 +24,7 @@ User marks todo as completed
     Mark todo as completed
 
 User creates a few todos
-    FOR   ${name}    IN     @{fewTodoNames}
+    FOR   ${name}    IN     @{broken}
         Create new todo     ${name}
     END
     # Create new todo      Hahaha... jeszcze jeden
