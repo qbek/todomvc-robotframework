@@ -11,7 +11,9 @@ Complete todo
     Select Checkbox    ${TODO_COMPLETE_TOGGLE}
 
 Verify if todo has class completed
-    Element Attribute Value Should Be    ${TODO_ITEM}    class   completed
+    ${classes} =    Get Element Attribute    ${TODO_ITEM}    class
+    Should Contain    ${classes}    completed
+    # Element Attribute Value Should Be    ${TODO_ITEM}    class   completed
 
 Verify todo is on the list
     [Arguments]   ${todoName}

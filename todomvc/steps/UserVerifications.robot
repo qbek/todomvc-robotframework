@@ -1,5 +1,4 @@
 *** Settings ***
-Library    SeleniumLibrary
 Resource    ../pageobjects/todomvc.robot
 Resource    ../pageobjects/TodosList.robot
 Resource    ../pageobjects/TodoFilters.robot
