@@ -16,4 +16,3 @@ User can enter his data
 
     Sleep   2s
     Close Browser
-
