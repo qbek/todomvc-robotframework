@@ -1,12 +1,16 @@
 *** Settings ***
 Library    SeleniumLibrary
 Library    Collections
+Library    String
 
 *** Variables ***
 ${TODOS_LIST} =    css:.todo-list
 ${TODO_COMPLETE_TOGGLE} =     css:.todo-list .toggle
 ${TODO_ITEM} =                css:.todo-list li
 ${TODO_DELETE_BUTTON} =    css:.todo-list .destroy
+
+${TODO_ITEM_BY_INDEX} =    ${TODO_ITEM}:nth-child(<INDEX>)
+${TODO_DELETE_BUTTON_BY_INDEX} =   ${TODO_ITEM_BY_INDEX} .destroy
 
 *** Keywords ***
 Complete todo
@@ -38,14 +42,38 @@ Verify todo is not on the list
 
 Verify if all todos are created
     [Arguments]    @{expectedTodos}
+    @{existingTodoNames} =   Collect all todos form list
+    Lists Should Be Equal    ${expectedTodos}    ${existingTodoNames}   ignore_order=True
+
+Collect all todos form list
     @{createdTodos} =   Get WebElements    ${TODO_ITEM}
     @{existingTodoNames} =   Create List
     FOR   ${todo}  IN    @{createdTodos}
         ${todoName} =    Get Text    ${todo}
         Append To List    ${existingTodoNames}    ${todoName}
     END
-    Lists Should Be Equal    ${expectedTodos}    ${existingTodoNames}   ignore_order=True
+    Return From Keyword    ${existingTodoNames}
+
+# Delete todo
+#     Mouse Over    ${TODO_ITEM}
+#     Click Element   ${TODO_DELETE_BUTTON}
 
 Delete todo
-    Mouse Over    ${TODO_ITEM}
-    Click Element   ${TODO_DELETE_BUTTON}
+    [Arguments]    ${todoNameToDelete}
+    ${index} =   Find todo index by name   ${todoNameToDelete}
+    
+    # delete tod
+    ${indexStr} =    Convert to string    ${index}
+    ${todoItem} =   Replace String    ${TODO_ITEM_BY_INDEX}    <INDEX>     ${indexStr}
+    Mouse Over   ${todoItem}
+
+    ${deleteButton} =   Replace String   ${TODO_DELETE_BUTTON_BY_INDEX}   <INDEX>    ${indexStr}
+    Click Element   ${deleteButton}
+
+Find todo index by name
+    [Arguments]   ${todoNameToDelete}
+    # Find index of todo by name
+    @{allCreatedTodos} =   Collect all todos form list
+    ${index} =    Get Index From List    ${allCreatedTodos}    ${todoNameToDelete}
+    ${index} =    Evaluate   ${index} + 1
+    Return From Keyword    ${index}

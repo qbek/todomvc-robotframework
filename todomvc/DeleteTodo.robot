@@ -11,3 +11,9 @@ User can delete todo
     User deletes todo
     User checks if todo is deleted
 
+User deletes THE ONE
+    User opens TodoMVC app
+    User creates a few todos
+    User creates THE ONE
+    User creates a few todos
+    User deletes THE ONE

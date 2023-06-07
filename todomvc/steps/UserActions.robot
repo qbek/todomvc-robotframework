@@ -31,5 +31,10 @@ User creates a few todos
     END
 
 User deletes todo
-    Delete todo
+    Delete todo    ${TODO_NAME}
    
+User deletes THE ONE
+    Delete todo    THE ONE
+
+User creates THE ONE
+    Create todo    THE ONE
