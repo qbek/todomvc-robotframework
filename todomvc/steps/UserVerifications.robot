@@ -3,8 +3,6 @@ Resource    ../pageobjects/todomvc.robot
 Resource    ../pageobjects/TodosList.robot
 Resource    ../pageobjects/TodoFilters.robot
 
-*** Variables ***
-${TODO_NAME} =    To jest lepsze zadanie
 
 
 *** Keywords ***
@@ -30,4 +28,4 @@ User checks if all todos are created
     # END
     # ${expectedTodosCount} =    Get Length   ${FEW_TODO_NAMES_TO_VERIFY}
     # Verify list contains exact number of todos     ${expectedTodosCount}
-    Verify if all todos are created    @{FEW_TODO_NAMES_TO_VERIFY}
+    Verify if all todos are created    @{FEW_TODO_NAMES}
