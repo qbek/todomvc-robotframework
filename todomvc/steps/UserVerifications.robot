@@ -23,3 +23,11 @@ User checks if completed todo is on Completed todos filter
     
 User checks if todo was created
     Verify todo is on the list    ${TODO_NAME}
+
+User checks if all todos are created
+    # FOR   ${todoName}    IN    @{FEW_TODO_NAMES_TO_VERIFY}
+    #     Verify list contains a todo    ${todoName}
+    # END
+    # ${expectedTodosCount} =    Get Length   ${FEW_TODO_NAMES_TO_VERIFY}
+    # Verify list contains exact number of todos     ${expectedTodosCount}
+    Verify if all todos are created    @{FEW_TODO_NAMES_TO_VERIFY}

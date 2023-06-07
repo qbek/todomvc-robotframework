@@ -9,3 +9,8 @@ User can create a new todo
     User opens TodoMVC app
     User creates a new todo
     User checks if todo was created
+
+User can create few todos
+    User opens TodoMVC app
+    User creates a few todos
+    User checks if all todos are created
