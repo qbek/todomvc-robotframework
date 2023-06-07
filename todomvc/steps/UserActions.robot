@@ -1,5 +1,5 @@
 *** Settings ***
-Resource    ../data/data_${TD}.robot
+Resource    ../data/data_random.robot
 Resource    ../pageobjects/todomvc.robot
 Resource    ../pageobjects/NewTodoInput.robot
 Resource    ../pageobjects/TodosList.robot
@@ -29,4 +29,7 @@ User creates a few todos
     FOR   ${todoName}    IN    @{FEW_TODO_NAMES}
         Create todo    ${todoName}
     END
+
+User deletes todo
+    Delete todo
    

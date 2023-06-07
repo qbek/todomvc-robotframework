@@ -29,3 +29,6 @@ User checks if all todos are created
     # ${expectedTodosCount} =    Get Length   ${FEW_TODO_NAMES_TO_VERIFY}
     # Verify list contains exact number of todos     ${expectedTodosCount}
     Verify if all todos are created    @{FEW_TODO_NAMES}
+
+User checks if todo is deleted
+    Verify todo is not on the list    ${TODO_NAME}

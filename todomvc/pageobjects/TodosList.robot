@@ -6,6 +6,7 @@ Library    Collections
 ${TODOS_LIST} =    css:.todo-list
 ${TODO_COMPLETE_TOGGLE} =     css:.todo-list .toggle
 ${TODO_ITEM} =                css:.todo-list li
+${TODO_DELETE_BUTTON} =    css:.todo-list .destroy
 
 *** Keywords ***
 Complete todo
@@ -44,3 +45,7 @@ Verify if all todos are created
         Append To List    ${existingTodoNames}    ${todoName}
     END
     Lists Should Be Equal    ${expectedTodos}    ${existingTodoNames}   ignore_order=True
+
+Delete todo
+    Mouse Over    ${TODO_ITEM}
+    Click Element   ${TODO_DELETE_BUTTON}
