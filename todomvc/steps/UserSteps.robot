@@ -3,14 +3,7 @@ Resource    ../pageobjects/TodoMVCPO.robot
 Resource    ../pageobjects/NewTodoInputPO.robot
 Resource    ../pageobjects/TodosFiltersPO.robot
 Resource    ../pageobjects/TodosListPO.robot
-
-
-*** Variables ***
-${todoName} =    Moje lepsze zadanie
-@{fewTodoNames} =   Zadanie 1    Zadanie 2    Zadanie 3   Zadanie 4
-@{fewTodoNamesToCheck} =      Zadanie 3     Zadanie 4   Zadanie 1    Zadanie 2
-
-
+Resource    ../data/DATA_${DATA}.robot
 
 
 *** Keywords ***
@@ -21,10 +14,12 @@ User closes TodoMVC app
     Close TodoMVC app
 
 User creates new todo
+    Setup todoName test variable
     Enter todo name    ${todoName}
     Submit todo
     
 User creates few todos
+    Setup fewTodoNames test variable
     FOR   ${todo}    IN    @{fewTodoNames}
         Enter todo name    ${todo}
         Submit todo
@@ -36,7 +31,7 @@ User checks if all todos are created
     #     Check if one of todos is on the list    ${todo}
     # END
 
-    Check if all todos are on the list     @{fewTodoNamesToCheck}
+    Check if all todos are on the list     @{fewTodoNames}
     
 
 User chcekcs if todo is created
