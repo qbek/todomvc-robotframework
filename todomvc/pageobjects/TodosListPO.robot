@@ -1,12 +1,16 @@
 *** Settings ***
 Library    SeleniumLibrary
 Library    Collections
+Library    String
 
 *** Variables ***
 ${TODOS_LIST} =    css:#todo-list
 ${TODO} =         css:#todo-list li
 ${TODO_COMPLETE_TOGGLE} =    css:.toggle
 ${TODO_DELETE_BUTTON} =     css:.destroy
+
+${TODO_BY_INDEX} =    css:#todo-list li:nth-child(<INDEX>)
+${TODO_DELETE_BUTTON_BY_INDEX} =     css:#todo-list li:nth-child(<INDEX>) .destroy
 
 
 *** Keywords ***
@@ -48,3 +52,25 @@ Complete todo
 Delete todo
     Mouse Over    ${TODO}
     Click Element      ${TODO_DELETE_BUTTON}
+
+
+Delete THE ONE
+    ${index} =    Find todo index by name    THE ONE
+    Log     Delete todo with index: ${index}    console=True
+    ${index_str} =    Convert To String   ${index}
+    ${todo} =    Replace String    ${TODO_BY_INDEX}    <INDEX>    ${index_str}
+    ${delete} =   Replace String    ${TODO_DELETE_BUTTON_BY_INDEX}    <INDEX>    ${index_str}  
+
+    Mouse Over    ${todo}
+    Click Element    ${delete}
+
+Find todo index by name
+    [Arguments]   ${name}
+    @{todos} =    Get WebElements    ${TODO}
+    ${index} =    Set Variable    ${1}
+    FOR    ${todo}    IN    @{todos}
+        ${currentTodo} =   Get Text   ${todo}
+        Log    ${index} - ${currentTodo}     console=True
+        Return From Keyword If     '${currentTodo}' == '${name}'     ${index}
+        ${index} =   Evaluate    ${index} + 1
+    END

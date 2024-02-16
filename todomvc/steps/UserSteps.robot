@@ -25,6 +25,9 @@ User creates few todos
         Submit todo
     END
 
+User creates THE ONE
+    Enter todo name    THE ONE
+    Submit todo
 
 User checks if all todos are created
     # FOR   ${todo}    IN    @{fewTodoNamesToCheck}
@@ -42,6 +45,9 @@ User completes a todo
 
 User deletes todo
     Delete todo
+
+User deletes THE ONE
+    Delete THE ONE
 
 User checks if todo is marked as completed
     Check if todo is marked as completed
