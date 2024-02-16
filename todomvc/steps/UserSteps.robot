@@ -44,10 +44,10 @@ User completes a todo
     Complete todo
 
 User deletes todo
-    Delete todo
+    Delete todo    ${todoName}
 
 User deletes THE ONE
-    Delete THE ONE
+    Delete todo     THE ONE
 
 User checks if todo is marked as completed
     Check if todo is marked as completed

@@ -26,14 +26,17 @@ Check if one of todos is on the list
 Check if all todos are on the list
     [Arguments]   @{expectedTodos}
 
+    @{todosFromApp} =     Get list of all displayed todos
+    Lists Should Be Equal     ${todosFromApp}     ${expectedTodos}   ignore_order=True
+
+Get list of all displayed todos
     @{todosFromApp} =     Create List
     @{todos} =   Get WebElements     ${TODO}
     FOR    ${todo}    IN    @{todos}
         ${name} =    Get Text     ${todo}
         Append To List    ${todosFromApp}    ${name}
     END
-    Lists Should Be Equal     ${todosFromApp}     ${expectedTodos}   ignore_order=True
-
+    Return From Keyword     @{todosFromApp}
 
 
 Check if todo is NOT on the list
@@ -48,14 +51,9 @@ Check if todo is marked as completed
 Complete todo
     Select Checkbox     ${TODO_COMPLETE_TOGGLE}
 
-
 Delete todo
-    Mouse Over    ${TODO}
-    Click Element      ${TODO_DELETE_BUTTON}
-
-
-Delete THE ONE
-    ${index} =    Find todo index by name    THE ONE
+    [Arguments]   ${name}
+    ${index} =    Find todo index by name    ${name}
     Log     Delete todo with index: ${index}    console=True
     ${index_str} =    Convert To String   ${index}
     ${todo} =    Replace String    ${TODO_BY_INDEX}    <INDEX>    ${index_str}
@@ -66,11 +64,8 @@ Delete THE ONE
 
 Find todo index by name
     [Arguments]   ${name}
-    @{todos} =    Get WebElements    ${TODO}
-    ${index} =    Set Variable    ${1}
-    FOR    ${todo}    IN    @{todos}
-        ${currentTodo} =   Get Text   ${todo}
-        Log    ${index} - ${currentTodo}     console=True
-        Return From Keyword If     '${currentTodo}' == '${name}'     ${index}
-        ${index} =   Evaluate    ${index} + 1
-    END
+    @{allTodos} =   Get list of all displayed todos 
+    ${index} =    Get Index From List   ${allTodos}    ${name}
+    ${index} =    Evaluate   ${index} + 1
+    Return From Keyword   ${index}
+    
