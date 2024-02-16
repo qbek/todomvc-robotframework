@@ -6,6 +6,7 @@ Library    Collections
 ${TODOS_LIST} =    css:#todo-list
 ${TODO} =         css:#todo-list li
 ${TODO_COMPLETE_TOGGLE} =    css:.toggle
+${TODO_DELETE_BUTTON} =     css:.destroy
 
 
 *** Keywords ***
@@ -43,4 +44,7 @@ Check if todo is marked as completed
 Complete todo
     Select Checkbox     ${TODO_COMPLETE_TOGGLE}
 
-  
+
+Delete todo
+    Mouse Over    ${TODO}
+    Click Element      ${TODO_DELETE_BUTTON}

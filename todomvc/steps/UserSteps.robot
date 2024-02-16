@@ -40,13 +40,21 @@ User chcekcs if todo is created
 User completes a todo
     Complete todo
 
+User deletes todo
+    Delete todo
+
 User checks if todo is marked as completed
     Check if todo is marked as completed
   
-User checks if completed todo is NOT on Active tab
+User switch to Active filter
     Goto Active tab
+
+User checks if todo is not displayed
     Check if todo is NOT on the list     ${todoName}
 
 User checks if completed todo is on Completed tab
     Goto Completed tab
     Check if todo is on the list    ${todoName}
+
+User checks if todo is deleted
+    Check if todo is NOT on the list    ${todoName}

@@ -12,3 +12,7 @@ User can create a few todos
     User opens TodoMVC app
     User creates few todos
     User checks if all todos are created
+
+
+
+
