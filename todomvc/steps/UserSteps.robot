@@ -1,18 +1,15 @@
 *** Settings ***
-Library    SeleniumLibrary
 Resource   ../pageobjects/NewTodoInput.robot
 Resource   ../pageobjects/TodosList.robot
 Resource   ../pageobjects/Filters.robot
+Resource   ../pageobjects/TodoMVCapp.robot
 
 *** Variables ***
-${BROWSER} =   firefox
-${TODOMVC_URL} =    https://todomvc.com/examples/jquery/dist/#/all
-
 ${todoName} =  Moje pierwsze zadanie z dluga nazwa
 
 *** Keywords ***
 User opens todoMVC app
-    Open Browser    ${TODOMVC_URL}    ${BROWSER}
+    Start TodoMVC app
 
 User creates a new todo
     Enter todo name    ${todoName}
