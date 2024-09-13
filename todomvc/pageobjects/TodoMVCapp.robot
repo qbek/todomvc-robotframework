@@ -1,10 +1,6 @@
 *** Settings ***
 Library    SeleniumLibrary
-
-
-*** Variables ***
-${BROWSER} =   firefox
-${TODOMVC_URL} =    https://todomvc.com/examples/jquery/dist/#/all
+Resource   ../data/env_${ENV}.robot
 
 *** Keywords ***
 Start TodoMVC app
