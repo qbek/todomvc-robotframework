@@ -6,7 +6,7 @@ Library   SeleniumLibrary
 ${TODOS_LIST} =    css:#todo-list
 ${TODO_ITEM} =    css:#todo-list li 
 ${TODO_COMPLETE_TOGGLE} =     css:.toggle
-
+${DELETE_BUTTON} =    css:.destroy
 
 *** Keywords ***
 Todo exists on the list
@@ -22,3 +22,9 @@ Check todo has completed class
 Todo is not on the list
     [Arguments]  ${name}
     Element Text Should Not Be     ${TODOS_LIST}     ${name}
+
+Hover todo item
+    Mouse Over    ${TODO_ITEM}    
+    
+Click delete button
+    Click Element    ${DELETE_BUTTON}

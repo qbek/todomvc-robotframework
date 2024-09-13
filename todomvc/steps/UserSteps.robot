@@ -31,3 +31,10 @@ User checks if completed todo is NOT on Active list
 User checks if completed todo is on Completed list
     Go to Completed tab
     Todo exists on the list    ${todoName}
+
+User deletes the todo
+    Hover todo item
+    Click delete button
+
+User checks if todo is deleted
+    Todo is not on the list    ${todoName}
