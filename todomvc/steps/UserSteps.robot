@@ -7,7 +7,8 @@ Resource   ../pageobjects/TodoMVCapp.robot
 *** Variables ***
 ${todoName} =  Moje pierwsze zadanie z dluga nazwa
 
-@{todoNames} =   Zadanie 1    Zadanie 2    Zadanie 3      Zadanie 4     Zadanie 5
+@{todoNames} =   Zadanie 2    Zadanie 3   Zadanie 6
+
 
 
 *** Keywords ***
@@ -18,21 +19,17 @@ User creates a new todo
     Enter todo name    ${todoName}
     Submit todo
     
-
 User creates a few todos
     FOR    ${todo}   IN   @{todoNames}
         Enter todo name    ${todo}
         Submit todo
     END
-   
 
 User checks if todo is crectly created
     Only todo exists on the list    ${todoName}
 
 User checks if all todos are created
-    FOR    ${todo}    IN    @{todoNames}  
-        Todo exists on the list    ${todo}    
-    END
+    All todos exists on the list    @{todoNames}
  
     
 User marks todo as completed

@@ -1,6 +1,6 @@
 *** Settings ***
 Library   SeleniumLibrary
-
+Library   Collections
 
 *** Variables ***
 ${TODOS_LIST} =    css:#todo-list
@@ -16,6 +16,20 @@ Only todo exists on the list
 Todo exists on the list
     [Arguments]   ${name}
     Element Should Contain    ${TODOS_LIST}    ${name}
+
+All todos exists on the list
+    [Arguments]   @{expected}
+    @{existing} =     Get all existing todos
+    Lists Should Be Equal     ${existing}     ${expected}     ignore_order=True
+
+Get all existing todos
+    @{names} =   Create List    
+    @{todos} =    Get WebElements    ${TODO_ITEM}
+    FOR    ${todo}     IN      @{todos}
+        ${text} =    Get Text   ${todo}
+        Append To List     ${names}    ${text}
+    END
+    Return From Keyword    @{names}
 
 
 Select todo complete checkbox
