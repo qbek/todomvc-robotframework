@@ -9,9 +9,14 @@ ${TODO_COMPLETE_TOGGLE} =     css:.toggle
 ${DELETE_BUTTON} =    css:.destroy
 
 *** Keywords ***
-Todo exists on the list
+Only todo exists on the list
     [Arguments]   ${name}
     Element Text Should Be    ${TODOS_LIST}    ${name}
+
+Todo exists on the list
+    [Arguments]   ${name}
+    Element Should Contain    ${TODOS_LIST}    ${name}
+
 
 Select todo complete checkbox
     Select Checkbox     ${TODO_COMPLETE_TOGGLE} 

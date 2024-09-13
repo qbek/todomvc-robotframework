@@ -7,6 +7,9 @@ Resource   ../pageobjects/TodoMVCapp.robot
 *** Variables ***
 ${todoName} =  Moje pierwsze zadanie z dluga nazwa
 
+@{todoNames} =   Zadanie 1    Zadanie 2    Zadanie 3      Zadanie 4     Zadanie 5
+
+
 *** Keywords ***
 User opens todoMVC app
     Start TodoMVC app
@@ -15,8 +18,22 @@ User creates a new todo
     Enter todo name    ${todoName}
     Submit todo
     
+
+User creates a few todos
+    FOR    ${todo}   IN   @{todoNames}
+        Enter todo name    ${todo}
+        Submit todo
+    END
+   
+
 User checks if todo is crectly created
-    Todo exists on the list    ${todoName}
+    Only todo exists on the list    ${todoName}
+
+User checks if all todos are created
+    FOR    ${todo}    IN    @{todoNames}  
+        Todo exists on the list    ${todo}    
+    END
+ 
     
 User marks todo as completed
     Select todo complete checkbox
@@ -41,4 +58,4 @@ User switches to Completed todos filter
     Go to Completed tab
 
 User checks if completed todo is displayed
-    Todo exists on the list    ${todoName}
+    Only todo exists on the list    ${todoName}
