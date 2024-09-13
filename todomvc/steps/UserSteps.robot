@@ -23,18 +23,22 @@ User marks todo as completed
     
 User checks if todo is marked as completed
     Check todo has completed class
-    
-User checks if completed todo is NOT on Active list
-    Go to Active tab
-    Todo is not on the list    ${todoName}
-    
-User checks if completed todo is on Completed list
-    Go to Completed tab
-    Todo exists on the list    ${todoName}
-
+        
 User deletes the todo
     Hover todo item
     Click delete button
 
 User checks if todo is deleted
     Todo is not on the list    ${todoName}
+
+User switches to Active todos filter
+    Go to Active tab
+
+User checks if completed todo is not displayed
+    Todo is not on the list    ${todoName}
+
+User switches to Completed todos filter
+    Go to Completed tab
+
+User checks if completed todo is displayed
+    Todo exists on the list    ${todoName}
