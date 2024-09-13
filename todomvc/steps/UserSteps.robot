@@ -3,12 +3,7 @@ Resource   ../pageobjects/NewTodoInput.robot
 Resource   ../pageobjects/TodosList.robot
 Resource   ../pageobjects/Filters.robot
 Resource   ../pageobjects/TodoMVCapp.robot
-
-*** Variables ***
-${todoName} =  Moje pierwsze zadanie z dluga nazwa
-
-@{todoNames} =   Zadanie 2    Zadanie 3   Zadanie 6
-
+Resource   ../data/td_random.robot
 
 
 *** Keywords ***
@@ -16,10 +11,12 @@ User opens todoMVC app
     Start TodoMVC app
 
 User creates a new todo
+    Set todoName test data
     Enter todo name    ${todoName}
     Submit todo
     
 User creates a few todos
+    Set todoNames test data
     FOR    ${todo}   IN   @{todoNames}
         Enter todo name    ${todo}
         Submit todo
