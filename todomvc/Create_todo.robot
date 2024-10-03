@@ -7,4 +7,3 @@ User can create a new todo
     User opens TodoMVC app
     User creates a new todo
     User verifies todo is created
-
