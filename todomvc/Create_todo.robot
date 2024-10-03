@@ -9,6 +9,12 @@ ${BROWSER} =    firefox
 ${NEW_TODO_INPUT} =    css:#new-todo
 ${TODO_ITEM_LABEL} =   css:#todo-list label
 
+${TODOS_LIST} =    css:#todo-list
+${TODO_ITEM} =    css:#todo-list li 
+${TODO_COMPLETE_TOGGLE} =     css:.toggle
+${ACTIVE_TAB} =     css:#todo-list [href="#/active"]
+${COMPLETED_TAB} =   css:#todo-list [href="#/completed"]
+
 ${todoName} =   To jest moje pierwsze zadanie
 
 *** Test Cases ***
@@ -20,7 +26,11 @@ User can create a new todo
 User can complete the todo
     User opens TodoMVC app
     User creates a new todo
-    
+    User marks todo as completed
+    User checks if todo is marked as completed
+    User checks if completed todo is NOT on Active list
+    User checks if completed todo is on Completed list
+
 
 *** Keywords ***
 User opens TodoMVC app
@@ -34,4 +44,17 @@ User creates a new todo
 User verifies todo is created
     Element Text Should Be     ${TODO_ITEM_LABEL}    ${todoName}
 
+User marks todo as completed
+    Select Checkbox     ${TODO_COMPLETE_TOGGLE} 
 
+User checks if todo is marked as completed
+    Element Attribute Value Should Be     ${TODO_ITEM}    class     \ completed
+
+User checks if completed todo is NOT on Active list
+    Click element    ${ACTIVE_TAB}
+    Element Text Should Not Be     ${TODOS_LIST}     ${todoName}
+
+User checks if completed todo is on Completed list
+    Click element     ${COMPLETED_TAB}
+    Element Text Should Be    ${TODO_ITEM_LABEL}    ${todoName}
+    
