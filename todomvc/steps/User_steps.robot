@@ -5,6 +5,9 @@ Resource    ../pageobjects/todo_filters_po.robot
 Resource    ../pageobjects/todo_list_po.robot
 Resource    ../data/env_${ENV}.robot
 
+*** Variables ***
+@{todos} =     Zadanie11    Zadanie22    Zadanie33
+@{todos_aaa} =  Zadanie33   Zadanie22    Zadanie11   
 
 *** Keywords ***
 User opens TodoMVC app
@@ -21,7 +24,7 @@ User creates a new todo
 
         
 User verifies todo is created
-    Todo is on the list    ${todoName}
+    Todo is only the list    ${todoName}
     
 User marks todo as completed
     Mark todo as completed
@@ -35,7 +38,7 @@ User checks if completed todo is NOT on Active list
     
 User checks if completed todo is on Completed list
     Go to Completed filter
-    Todo is on the list    ${todoName}
+    Todo is only the list    ${todoName}
 
 User colses TodoMVC app
     Close browser
@@ -49,6 +52,18 @@ User deletes created todo
 User checks todo is deleted
     Todo is NOT on the list    ${todoName}
 
+User creates a few todos
+    FOR   ${todo}   IN    @{todos}
+        Enter todo name    ${todo}  
+        Submit todo by pressing Enter
+    END
+    
+
+
+User chekcs if all todos are created
+    List contains all todos    @{todos_aaa}
+
+
 #--------------
 User creates a new todo1
     Enter todo name      ${todoName1} 
@@ -59,10 +74,10 @@ User creates a new todo2
     Submit todo by pressing Enter
 
 User verifies todo1 is created
-    Todo is on the list    ${todoName1} 
+    Todo is only the list    ${todoName1} 
 
 User verifies todo2 is created
-    Todo is on the list    To jest todo22222222
+    Todo is only the list    To jest todo22222222
 
 #----------
 User creates a specyfic todo
@@ -71,5 +86,5 @@ User creates a specyfic todo
 
 
 User verifies specyfic todo is created
-    Todo is on the list    ${todoName}
+    Todo is only the list    ${todoName}
 
