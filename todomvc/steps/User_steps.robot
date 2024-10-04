@@ -4,10 +4,8 @@ Resource    ../pageobjects/todo_input_po.robot
 Resource    ../pageobjects/todo_filters_po.robot
 Resource    ../pageobjects/todo_list_po.robot
 Resource    ../data/env_${ENV}.robot
+Resource    ../data/td_${TD}.robot
 
-*** Variables ***
-@{todos} =     Zadanie11    Zadanie22    Zadanie33
-@{todos_aaa} =  Zadanie33   Zadanie22    Zadanie11   
 
 *** Keywords ***
 User opens TodoMVC app
@@ -15,6 +13,7 @@ User opens TodoMVC app
     Wait until todo input is visible
     
 User creates a new todo
+    Set todo name for test
     Enter todo name    ${todoName}  
     Submit todo by pressing Enter
 
@@ -53,7 +52,8 @@ User checks todo is deleted
     Todo is NOT on the list    ${todoName}
 
 User creates a few todos
-    FOR   ${todo}   IN    @{todos}
+    Set todos names for test
+    FOR   ${todo}   IN    @{todoNames}
         Enter todo name    ${todo}  
         Submit todo by pressing Enter
     END
@@ -61,7 +61,7 @@ User creates a few todos
 
 
 User chekcs if all todos are created
-    List contains all todos    @{todos_aaa}
+    List contains all todos    @{todoNames}
 
 
 #--------------

@@ -1,6 +1,5 @@
 *** Settings ***
 Resource    steps/User_steps.robot
-Resource    data/test_data.robot
 Test Teardown    User colses TodoMVC app
 
 *** Variables ***
@@ -8,7 +7,6 @@ Test Teardown    User colses TodoMVC app
 
 *** Test Cases ***
 User can create a new todo
-    Set todo name for test    to jest moje zadanie
     User opens TodoMVC app
     User creates a new todo
     User verifies todo is created
