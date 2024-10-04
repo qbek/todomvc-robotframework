@@ -6,6 +6,7 @@ Library    SeleniumLibrary
 ${TODOS_LIST} =    css:#todo-list
 ${TODO_ITEM} =    ${TODOS_LIST} li 
 ${TODO_COMPLETE_TOGGLE} =     ${TODO_ITEM} .toggle
+${TODO_DELETE_BUTTON} =   ${TODO_ITEM} .destroy
 
 *** Keywords ***
 Todo is on the list
@@ -21,3 +22,9 @@ Mark todo as completed
 
 Todo is marked as completed
     Element Attribute Value Should Be     ${TODO_ITEM}    class     \ completed
+
+Move mouse over todo
+    Mouse Over    ${TODO_ITEM}
+
+Delete todo
+    Click Element    ${TODO_DELETE_BUTTON}

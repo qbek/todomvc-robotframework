@@ -45,6 +45,14 @@ User colses TodoMVC app
     Close browser
 
 
+User deletes created todo
+    Move mouse over todo
+    Delete todo
+
+
+User checks todo is deleted
+    Todo is NOT on the list
+
 #--------------
 User creates a new todo1
     Enter todo name      ${todoName1} 
@@ -68,3 +76,4 @@ User creates a specyfic todo
 
 User verifies specyfic todo is created
     Todo is on the list    ${todoName}
+
