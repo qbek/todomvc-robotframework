@@ -7,7 +7,6 @@ ${TODOS_LIST} =    css:#todo-list
 ${TODO_ITEM} =    ${TODOS_LIST} li 
 ${TODO_COMPLETE_TOGGLE} =     ${TODO_ITEM} .toggle
 
-
 *** Keywords ***
 Todo is on the list
     [Arguments]    ${name}

@@ -20,6 +20,11 @@ User opens TodoMVC app
 User creates a new todo
     Enter todo name    ${todoName}  
     Submit todo by pressing Enter
+
+    # Enter todo name     krotki
+    # Enter todo name     bardzo dluzoglaksdgh ;laksdhg alksj ;lkdgs ;lgh as;dlgkahsdg
+    # Enter todo name    !@#$%^&*
+
         
 User verifies todo is created
     Todo is on the list    ${todoName}

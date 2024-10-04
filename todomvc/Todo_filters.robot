@@ -10,6 +10,7 @@ User can filter active todos
     User marks todo as completed
     User checks if completed todo is NOT on Active list
 
+
 User can filter completed todos
     User opens TodoMVC app
     User creates a new todo

@@ -16,3 +16,4 @@ Enter todo name
 Submit todo by pressing Enter
     Press Keys    ${NEW_TODO_INPUT}    RETURN
 
+
