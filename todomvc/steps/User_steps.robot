@@ -3,11 +3,7 @@ Library     SeleniumLibrary
 Resource    ../pageobjects/todo_input_po.robot
 Resource    ../pageobjects/todo_filters_po.robot
 Resource    ../pageobjects/todo_list_po.robot
-
-
-*** Variables ***
-${TODOMVC_URL} =    https://todomvc.com/examples/jquery/dist/#/all
-${BROWSER} =    firefox
+Resource    ../data/env_${ENV}.robot
 
 
 *** Keywords ***
@@ -51,7 +47,7 @@ User deletes created todo
 
 
 User checks todo is deleted
-    Todo is NOT on the list
+    Todo is NOT on the list    ${todoName}
 
 #--------------
 User creates a new todo1
