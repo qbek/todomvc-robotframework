@@ -9,8 +9,6 @@ Resource    ../pageobjects/todo_list_po.robot
 ${TODOMVC_URL} =    https://todomvc.com/examples/jquery/dist/#/all
 ${BROWSER} =    firefox
 
-${todoName} =   To jest moje pierwsze zadanie
-
 
 *** Keywords ***
 User opens TodoMVC app
@@ -45,3 +43,28 @@ User checks if completed todo is on Completed list
 
 User colses TodoMVC app
     Close browser
+
+
+#--------------
+User creates a new todo1
+    Enter todo name      ${todoName1} 
+    Submit todo by pressing Enter
+
+User creates a new todo2
+    Enter todo name      To jest todo22222222
+    Submit todo by pressing Enter
+
+User verifies todo1 is created
+    Todo is on the list    ${todoName1} 
+
+User verifies todo2 is created
+    Todo is on the list    To jest todo22222222
+
+#----------
+User creates a specyfic todo
+    Enter todo name    ${todoName}
+    Submit todo by pressing Enter
+
+
+User verifies specyfic todo is created
+    Todo is on the list    ${todoName}

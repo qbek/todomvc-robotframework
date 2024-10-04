@@ -16,3 +16,4 @@ User can filter completed todos
     User creates a new todo
     User marks todo as completed
     User checks if completed todo is on Completed list
+
